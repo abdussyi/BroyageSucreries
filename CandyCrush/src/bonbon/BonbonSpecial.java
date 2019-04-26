@@ -1,5 +1,5 @@
 package bonbon;
 
-public class BonbonSpecial {
-
+public class BonbonSpecial implements Contenant {
+	
 }
