@@ -38,9 +38,11 @@ public class Grille {
 		Case nimp =  line.get(colonne);
 		nimp.setBonbon(bonbon);
 	}
-	public Contenant getBonbon()
+	public Contenant getCaseBonbon(int ligne, int colonne)
 	{
-		return null;
+		ArrayList<Case> line = this.ligne.get(ligne);
+		Case nimp =  line.get(colonne);
+		return nimp.getBonbon();
 	}
 	
 }
