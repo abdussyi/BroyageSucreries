@@ -27,6 +27,13 @@ public class Case {
 		this.bonbon = bonbon;
 	}
 	
+	public boolean estVide()
+	{
+		if(bonbon==null)
+			return true;
+		else
+			return false;
+	}
 	
 	@Override
 	public String toString() {

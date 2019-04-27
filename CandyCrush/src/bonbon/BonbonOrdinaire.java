@@ -6,7 +6,6 @@ public class BonbonOrdinaire implements Contenant{
 	private Couleur coul;
 
 	public BonbonOrdinaire(Couleur coul) {
-		super();
 		this.coul = coul;
 	}
 

@@ -1,49 +1,46 @@
 package terrain;
 
+import java.util.ArrayList;
+
 import bonbon.Contenant;
-
-public class Grille extends Case{
-
+//penser a faire la fonction qui fait que les bonbon tombent(decale) vers le bas
+public class Grille {
+	
+	//Deux initialisation possible : un aleatoirement et l'autre par les fichiers du prof
 	//une grille est un ensemble de case
 	//sa taille est carré, et est invariable une fois fixé, c'est pourquoi il n'y a pas de setter
 	
 	private int taille;
+	private ArrayList<ArrayList<Case>> ligne;
 	
-	public Grille(Contenant bonbon, int taille) {
-		super(bonbon);
-		this.taille=taille;
+	
+	//Cette methode metier, permet d'initaialiser a NULL toutes la grille
+	//c'est une grille carré
+	public void initLigne(int taille)
+	{
+		//a verifier, j'ai un doute sur la syntaxe
+		this.ligne=new ArrayList<ArrayList<Case>>();
+		for (int i = 0; i <=taille;i++)
+		{
+			//a verifier, j'ai un doute sur la syntaxe
+			ArrayList<Case> col = new ArrayList<Case>();
+			for (int j = 0; j <=taille;j++)
+			{
+				col.add(null);
+			}
+			this.ligne.add(col);
+		}
 	}
-
-	public int getTaille() {
-		return taille;
+	
+	public void setCaseGrille(int ligne, int colonne,Contenant bonbon)
+	{
+		ArrayList<Case> line = this.ligne.get(ligne);
+		Case nimp =  line.get(colonne);
+		nimp.setBonbon(bonbon);
 	}
-
-	@Override
-	public String toString() {
-		return "Grille [taille=" + taille + "]";
+	public Contenant getBonbon()
+	{
+		return null;
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + taille;
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Grille other = (Grille) obj;
-		if (taille != other.taille)
-			return false;
-		return true;
-	}
-
 	
 }
