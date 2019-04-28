@@ -3,31 +3,54 @@ package bonbon;
 
 public class BonbonOrdinaire implements Contenant{
 	
-	private Couleur coul;
+	private Couleur couleur;
+	private boolean estMeringue;
+	private boolean estSpecial;
 
-	public BonbonOrdinaire(Couleur coul) {
-		this.coul = coul;
+	public BonbonOrdinaire(Couleur couleur) {
+		setCouleur(couleur);
+		this.estMeringue=false;
+		this.estSpecial=false;
+	}
+	
+	private void setCouleur(Couleur couleur)
+	{
+		this.couleur = couleur;
+	}
+	
+	//exeption si utilisé avec meringue
+	public Couleur getCouleur() {
+		return couleur;
+	}
+	
+	
+	public boolean getEstMeingue()
+	{
+		return estMeringue;
 	}
 
-	public Couleur getBonbon() {
-		return coul;
-	}
 
+	public boolean estSpecial() {
+		return estSpecial;
+	}
 
 	@Override
 	public String toString() {
-		return "BonbonOrdinaire [bonbon=" + coul + "]";
+		return "BonbonOrdinaire [couleur=" + couleur + ", estMeringue=" + estMeringue + ", estSpecial=" + estSpecial
+				+ "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((coul == null) ? 0 : coul.hashCode());
+		result = prime * result + ((couleur == null) ? 0 : couleur.hashCode());
+		result = prime * result + (estMeringue ? 1231 : 1237);
+		result = prime * result + (estSpecial ? 1231 : 1237);
 		return result;
 	}
 
-	@Override
+	
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -36,9 +59,15 @@ public class BonbonOrdinaire implements Contenant{
 		if (getClass() != obj.getClass())
 			return false;
 		BonbonOrdinaire other = (BonbonOrdinaire) obj;
-		if (coul != other.coul)
+		if (couleur != other.couleur)
+			return false;
+		if (estMeringue != other.estMeringue)
+			return false;
+		if (estSpecial != other.estSpecial)
 			return false;
 		return true;
 	}
+
+	
 	
 }
