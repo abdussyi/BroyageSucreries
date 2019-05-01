@@ -4,12 +4,10 @@ package bonbon;
 public class BonbonOrdinaire implements Contenant{
 	
 	private Couleur couleur;
-	private boolean estMeringue;
 	private boolean estSpecial;
 
 	public BonbonOrdinaire(Couleur couleur) {
 		setCouleur(couleur);
-		this.estMeringue=false;
 		this.estSpecial=false;
 	}
 	
@@ -22,18 +20,40 @@ public class BonbonOrdinaire implements Contenant{
 	public Couleur getCouleur() {
 		return couleur;
 	}
-	
-	
-	public boolean getEstMeingue()
-	{
-		return estMeringue;
-	}
+
 
 
 	public boolean estSpecial() {
 		return estSpecial;
 	}
-	
+
+	public String AfficherCouleur()
+	{
+		if(couleur==Couleur.VIDE)
+		{
+			return "  VID  ";
+		}
+		else if(couleur==Couleur.BLEU)
+		{
+			return "  BLE  ";
+		}
+		else if(couleur==Couleur.JAUNE)
+		{
+			return "  JAU  ";
+		}
+		else if(couleur==Couleur.MERINGUE)
+		{
+			return "  MER  ";
+		}
+		else if(couleur==Couleur.VERT)
+		{
+			return "  VER  ";
+		}
+		else
+		{
+			return "  VIO  ";
+		}
+	}
 	public boolean estMemeCouleur(Contenant a)
 	{
 		if(a.getCouleur().getClass()==this.couleur.getClass())
@@ -44,7 +64,7 @@ public class BonbonOrdinaire implements Contenant{
 
 	@Override
 	public String toString() {
-		return "BonbonOrdinaire [couleur=" + couleur + ", estMeringue=" + estMeringue + ", estSpecial=" + estSpecial
+		return "BonbonOrdinaire [couleur=" + couleur  + ", estSpecial=" + estSpecial
 				+ "]";
 	}
 
@@ -53,7 +73,6 @@ public class BonbonOrdinaire implements Contenant{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((couleur == null) ? 0 : couleur.hashCode());
-		result = prime * result + (estMeringue ? 1231 : 1237);
 		result = prime * result + (estSpecial ? 1231 : 1237);
 		return result;
 	}
@@ -69,8 +88,7 @@ public class BonbonOrdinaire implements Contenant{
 		BonbonOrdinaire other = (BonbonOrdinaire) obj;
 		if (couleur != other.couleur)
 			return false;
-		if (estMeringue != other.estMeringue)
-			return false;
+
 		if (estSpecial != other.estSpecial)
 			return false;
 		return true;

@@ -21,9 +21,14 @@ public class Plateau {
 	
 	//il y aura deux constructeur, un qui charge le plateau depuis un fichiers et l'autre aleatoirement
 	
-	public Plateau(String file) throws IOException
+	public Plateau(String file)
 	{
-		loadFile(file);
+		try {
+			loadFile(file);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	//grille généré aleatoirement
@@ -59,12 +64,12 @@ public class Plateau {
 		{
 			//le separateur
 		    String[] lines = line.split(";");
-		    if(!lines[0].matches("NB_LIG"))
+		    if(lines[0].matches("NB_LIG"))
 		    {
 		    	//integer.parse permet de convertir un string en int
 		    	this.taille=Integer.parseInt(lines[1]);
 				initGrille(taille);
-				
+			    line = br.readLine();
 		    }
 		    else if(!lines[0].matches("[0-9]"))
 		    {
@@ -79,11 +84,10 @@ public class Plateau {
 			   		grille[ligne][i]=new Case(temp);
 			   	}
 		    	ligne++;
-		    }
-		    //Do something for line here
-		    //Store the data read into a variable
+			    line = br.readLine();         
 
-		    line = br.readLine();         
+		    }
+
 		}
 
 		fr.close();
@@ -121,7 +125,192 @@ public class Plateau {
 	{
 		return this.taille;
 	}
-
+	
+	
+	//coordonnée du bonbon à echanger sur le tableau en parametre
+	public void echange(int x, int y,int x2,int y2) throws CandyException
+	{
+		if(   (x!=x2 && y!=y2)    ||    (   (x2!=x+1||x2!=x-1)     &&     (y2!=y+1||y2!=y-1)   )   )
+		{
+			throw new CandyException("Case non conforme");
+		}
+		else if(x>taille-1||y>taille-1||x2>taille-1||y2>taille-1||x<0||y<0||x2<0||y2<0)
+		{
+			throw new IllegalArgumentException("Argument probleme case vide");
+		}
+		else
+		{
+			//c'est l'echange
+			Contenant temp = grille[x2][y2].getBonbon();
+			grille[x2][y2].setBonbon(grille[x][y].getBonbon());
+			grille[x][y].setBonbon(temp);
+		}
+	}
+	
+	
+	
+	public boolean caseEstDansGrille(int l, int c)
+	{
+		if(l>taille-1||c>taille-1||l<0||c<0)
+		{
+			return false;
+		}
+		else
+			return true;
+	}
+	
+	public void dedectionTroisMemeCouleur(int l, int c)
+	{
+		//sauvegarde des voisin de la case afin de faciliter la la lisibilité du code
+		
+		//les case sont numéroté de -2 à 2
+		
+		Case moinsDeux,moinsUn,zero,un,deux;
+		
+		
+		//verification horizontale
+		if(caseEstDansGrille(l, c-2))
+		{
+			moinsDeux = grille[l][c-2];
+		}
+		else
+		{
+			moinsDeux=null;
+		}
+		if(caseEstDansGrille(l, c-1))
+		{
+			moinsUn = grille[l][c-1];
+		}
+		else
+		{
+			moinsUn = null;
+		}
+		if(caseEstDansGrille(l, c))
+		{
+			zero = grille[l][c];
+		}
+		else
+		{
+			zero = null;
+		}
+		if(caseEstDansGrille(l, c+1))
+		{
+			un = grille[l][c+1];
+		}
+		else
+		{
+			un = null;
+		}
+		if(caseEstDansGrille(l, c+2))
+		{
+			deux = grille[l][c+2];
+		}
+		else
+		{
+			deux = null;
+		}
+		
+		if(moinsDeux!=null)
+		{
+			if( moinsDeux.getBonbon().estMemeCouleur(moinsUn.getBonbon())&&moinsUn.getBonbon().estMemeCouleur(zero.getBonbon()))
+			{
+				//il exite une combinaison en -2 -1 et 0
+			}
+		}
+		else if(moinsUn!=null&&un!=null)
+		{
+			if( moinsUn.getBonbon().estMemeCouleur(zero.getBonbon())&&zero.getBonbon().estMemeCouleur(un.getBonbon()))
+			{
+				//il exite une combinaison en  -1 et 0 et 1
+			}
+		}
+		else if(un!=null&&deux!=null)
+		{
+			if( zero.getBonbon().estMemeCouleur(un.getBonbon())&&un.getBonbon().estMemeCouleur(deux.getBonbon()))
+			{
+				//il exite une combinaison en  0,1 et 2
+			}
+		
+		}
+		
+		//verification Verticale
+		if(caseEstDansGrille(l-2, c))
+		{
+			moinsDeux = grille[l-2][c];
+		}
+		else
+		{
+			moinsDeux=null;
+		}
+		if(caseEstDansGrille(l-1, c))
+		{
+			moinsUn = grille[l-1][c];
+		}
+		else
+		{
+			moinsUn = null;
+		}
+		//pas vraiment bseoin de cela
+		if(caseEstDansGrille(l, c))
+		{
+			zero = grille[l][c];
+		}
+		else
+		{
+			zero = null;
+		}
+		if(caseEstDansGrille(l+1, c))
+		{
+			un = grille[l+1][c];
+		}
+		else
+		{
+			un = null;
+		}
+		if(caseEstDansGrille(l+2, c))
+		{
+			deux = grille[l+2][c];
+		}
+		else
+		{
+			deux = null;
+		}
+		
+		if(moinsDeux!=null)
+		{
+			if( moinsDeux.getBonbon().estMemeCouleur(moinsUn.getBonbon())&&moinsUn.getBonbon().estMemeCouleur(zero.getBonbon()))
+			{
+				//il exite une combinaison en -2 -1 et 0
+			}
+		}
+		else if(moinsUn!=null&&un!=null)
+		{
+			if( moinsUn.getBonbon().estMemeCouleur(zero.getBonbon())&&zero.getBonbon().estMemeCouleur(un.getBonbon()))
+			{
+				//il exite une combinaison en  -1 et 0 et 1
+			}
+		}
+		else if(un!=null&&deux!=null)
+		{
+			if( zero.getBonbon().estMemeCouleur(un.getBonbon())&&un.getBonbon().estMemeCouleur(deux.getBonbon()))
+			{
+				//il exite une combinaison en  0,1 et 2
+			}
+		
+		}
+	}
+	
+	public void afficherGrille()
+	{
+		for(int ligne=0;ligne<taille;ligne++)
+		{
+			for(int colonne=0;colonne<taille;colonne++)
+			{
+				System.out.print("["+grille[ligne][colonne].getBonbon().AfficherCouleur()+"]");
+			}
+			System.out.print("\n");
+		}
+	}
 	@Override
 	public String toString() {
 		return "Plateau [taille=" + taille + ", grille=" + Arrays.toString(grille) + "]";
@@ -152,33 +341,5 @@ public class Plateau {
 		return true;
 	}
 
-	
-	//coordonnée du bonbon à echanger sur le tableau en parametre
-	public void echange(int x, int y,int x2,int y2) throws CandyException
-	{
-		if(   (x!=x2 && y!=y2)    ||    (   (x2!=x+1||x2!=x-1)     &&     (y2!=y+1||y2!=y-1)   )   )
-		{
-			throw new CandyException("Case non conforme");
-		}
-		else if(x>taille-1||y>taille-1||x2>taille-1||y2>taille-1||x<0||y<0||x2<0||y2<0)
-		{
-			throw new IllegalArgumentException("Argument probleme case vide");
-		}
-		else
-		{
-			//c'est l'echange
-			Contenant temp = grille[x2][y2].getBonbon();
-			grille[x2][y2].setBonbon(grille[x][y].getBonbon());
-			grille[x][y].setBonbon(temp);
-		}
-	}
-	
-	//nous 
-	public void detection(int x, int y)
-	{
-		//verification verticale
-		
-	}
-	
 	
 }

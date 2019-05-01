@@ -1,6 +1,5 @@
 package detection;
 
-import terrain.Case;
 
 public class CombiTrois {
 		
@@ -15,10 +14,4 @@ public class CombiTrois {
 			this.estDetectable= estDetectable;
 		}
 		
-		public void ExecuterInterface(Case[][] grille,int l, int c) {
-			if (grille[l][c].getBonbon().estSpecial())
-			{
-				
-			}
-	}
 }

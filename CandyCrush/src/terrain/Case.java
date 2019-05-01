@@ -8,10 +8,6 @@ import bonbon.Couleur;
 public class Case {
 	//une case contient soit un bonbon, soit rien
 	
-	private static final Couleur BLEU = null;
-	private static final Couleur VIOLET = null;
-	private static final Couleur JAUNE = null;
-	private static final Couleur VERT = null;
 	private Contenant bonbon;
 	
 	
@@ -27,49 +23,50 @@ public class Case {
 	{
 		if(bonbon==0)
 		{
-			this.bonbon=null;
+			this.bonbon=new BonbonOrdinaire(Couleur.VIDE);
 		}
 		if(bonbon==1)
 		{
-			this.bonbon=new BonbonOrdinaire(BLEU);
+			this.bonbon=new BonbonOrdinaire(Couleur.BLEU);
 		}
 		if(bonbon==2)
 		{
-			this.bonbon=new BonbonOrdinaire(VIOLET);
+			this.bonbon=new BonbonOrdinaire(Couleur.VIOLET);
 		}
 		if(bonbon==3)
 		{
-			this.bonbon=new BonbonOrdinaire(JAUNE);
+			this.bonbon=new BonbonOrdinaire(Couleur.JAUNE);
 		}
 		if(bonbon==4)
 		{
-			this.bonbon=new BonbonOrdinaire(VERT);
+			this.bonbon=new BonbonOrdinaire(Couleur.VERT);
 		}
 		if(bonbon==5)
 		{
-			this.bonbon=new BonbonSpecial(BLEU);
+			this.bonbon=new BonbonSpecial(Couleur.BLEU);
 		}
 		if(bonbon==6)
 		{
-			this.bonbon=new BonbonSpecial(VIOLET);
+			this.bonbon=new BonbonSpecial(Couleur.VIOLET);
 		}
 		if(bonbon==7)
 		{
-			this.bonbon=new BonbonSpecial(JAUNE);
+			this.bonbon=new BonbonSpecial(Couleur.JAUNE);
 		}
 		if(bonbon==8)
 		{
-			this.bonbon=new BonbonSpecial(VERT);
+			this.bonbon=new BonbonSpecial(Couleur.VERT);
 		}
 		if(bonbon==9)
 		{
-			this.bonbon=new BonbonSpecial(true);
+			this.bonbon=new BonbonSpecial(Couleur.MERINGUE);
 		}
 	}
 
 	public Contenant getBonbon() {
 		return bonbon;
 	}
+	
 	
 	
 	//en argument mettre object peut etre... à voir
@@ -85,6 +82,7 @@ public class Case {
 		else
 			return false;
 	}
+
 	
 	@Override
 	public String toString() {
@@ -117,4 +115,6 @@ public class Case {
 			return false;
 		return true;
 	}
+	
+	
 }
