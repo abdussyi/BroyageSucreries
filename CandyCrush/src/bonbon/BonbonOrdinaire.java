@@ -33,6 +33,14 @@ public class BonbonOrdinaire implements Contenant{
 	public boolean estSpecial() {
 		return estSpecial;
 	}
+	
+	public boolean estMemeCouleur(Contenant a)
+	{
+		if(a.getCouleur().getClass()==this.couleur.getClass())
+			return true;
+		else
+			return false;
+	}
 
 	@Override
 	public String toString() {

@@ -173,8 +173,10 @@ public class Plateau {
 		}
 	}
 	
+	//nous 
 	public void detection(int x, int y)
 	{
+		//verification verticale
 		
 	}
 	
