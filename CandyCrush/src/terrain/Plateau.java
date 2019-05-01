@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import Exception.CandyException;
 import bonbon.Contenant;
 //penser a faire la fonction qui fait que les bonbon tombent(decale) vers le bas
 public class Plateau {
@@ -109,8 +110,10 @@ public class Plateau {
 	{
 		this.grille[ligne][colonne]=new Case(bonbon);
 	}
-	public Contenant getCaseBonbon(int ligne, int colonne)
+	public Contenant getCaseBonbon(int ligne, int colonne) throws CandyException
 	{
+		if (ligne>taille-1 || colonne>taille-1)
+			throw new CandyException("On depasse la limite du plateau");
 		return this.grille[ligne][colonne].getBonbon();
 	}
 	
