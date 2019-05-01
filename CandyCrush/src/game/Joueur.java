@@ -22,7 +22,7 @@ public class Joueur {
 	}
 	
 	public void setScore(int score) {
-		
+	
 		
 	}
 
