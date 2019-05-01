@@ -112,8 +112,8 @@ public class Plateau {
 	}
 	public Contenant getCaseBonbon(int ligne, int colonne) throws CandyException
 	{
-		if (this.grille[ligne][colonne].getBonbon()==null)
-			throw new CandyException("C'est une case vide");
+		if (ligne>taille-1 || colonne>taille-1)
+			throw new CandyException("On depasse la limite du plateau");
 		return this.grille[ligne][colonne].getBonbon();
 	}
 	
