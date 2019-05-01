@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import bonbon.Contenant;
 //penser a faire la fonction qui fait que les bonbon tombent(decale) vers le bas
@@ -93,7 +94,6 @@ public class Plateau {
 	//c'est une grille carré
 	public void initGrille(int taille)
 	{
-		int temp;
 		//a verifier, j'ai un doute sur la syntaxe
 		this.grille= new Case[taille][taille];
 		for (int i = 0; i <taille;i++)
@@ -112,6 +112,48 @@ public class Plateau {
 	public Contenant getCaseBonbon(int ligne, int colonne)
 	{
 		return this.grille[ligne][colonne].getBonbon();
+	}
+	
+	public int getTaille()
+	{
+		return this.taille;
+	}
+
+	@Override
+	public String toString() {
+		return "Plateau [taille=" + taille + ", grille=" + Arrays.toString(grille) + "]";
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + Arrays.deepHashCode(grille);
+		result = prime * result + taille;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Plateau other = (Plateau) obj;
+		if (!Arrays.deepEquals(grille, other.grille))
+			return false;
+		if (taille != other.taille)
+			return false;
+		return true;
+	}
+
+	
+	//coordonnée du bonbon à echanger sur le tableau en parametre
+	public void echange(int x, int y,int x1,int y2)
+	{
+		
 	}
 	
 	

@@ -1,9 +1,8 @@
 package game;
 
+//coming soon
+//permet de sauvegarder ses parties
 public class Partie {
-	private String TypePartie;
-	private int tempsLimite;
-	private int scoreLimite;
-	private int nbDeplacement;
+
 	
 }
