@@ -2,7 +2,6 @@ package terrain;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -16,16 +15,13 @@ public class Plateau {
 	//sa taille est carré, et est invariable une fois fixé, c'est pourquoi il n'y a pas de setter
 	
 	private int taille;
-	private ArrayList<ArrayList<Case>> grille;
+	private Case[][] grille;
 	
-	//il y aura deux constructeur un aleatoire en argument la taille, et un en parametre la taille et un fichier
+	//il y aura deux constructeur, un qui charge le plateau depuis un fichiers et l'autre aleatoirement
 	
-	
-	public Plateau(int taille, String file)
+	public Plateau(String file) throws IOException
 	{
-		setTaille(taille);
-		initGrille(taille);
-		
+		loadFile(file);
 	}
 	
 	//grille généré aleatoirement
@@ -43,10 +39,10 @@ public class Plateau {
 	}
 	
 	//Cete methode charge le plateau depuis un fichier
-	public void loadFile() throws IOException
+	public void loadFile(String rep) throws IOException
 	{
 		//read the file, line by line from txt
-		File file = new File("train/traindata.txt");
+		File file = new File(rep);
 		FileReader fr = new FileReader(file);
 		BufferedReader br = new BufferedReader(fr);
 		String line;
@@ -55,7 +51,8 @@ public class Plateau {
 		line = br.readLine();
 	    //line = br.readLine();         
 	    //line = br.readLine();         
-
+		
+		int ligne =0;
 		while(line != null)
 		{
 			//le separateur
@@ -65,6 +62,7 @@ public class Plateau {
 		    	//integer.parse permet de convertir un string en int
 		    	this.taille=Integer.parseInt(lines[1]);
 				initGrille(taille);
+				
 		    }
 		    else if(!lines[0].matches("[0-9]"))
 		    {
@@ -72,13 +70,13 @@ public class Plateau {
 		    }
 		    else
 		    {
-	    		ArrayList<Case> ligne = new ArrayList<Case>(); 
+	    		//ArrayList<Case> ligne = new ArrayList<Case>(); 
 		    	for(int i=0;i<taille;i++)
-		    	{
-		    		temp = Integer.parseInt(lines[i]);
-		    		ligne.add(new Case(temp));
-		    	}
-		    	this.grille.add(ligne);
+			    {
+			   		temp = Integer.parseInt(lines[i]);
+			   		grille[ligne][i]=new Case(temp);
+			   	}
+		    	ligne++;
 		    }
 		    //Do something for line here
 		    //Store the data read into a variable
@@ -95,31 +93,25 @@ public class Plateau {
 	//c'est une grille carré
 	public void initGrille(int taille)
 	{
+		int temp;
 		//a verifier, j'ai un doute sur la syntaxe
-		this.grille=new ArrayList<ArrayList<Case>>();
-		for (int i = 0; i <=taille;i++)
+		this.grille= new Case[taille][taille];
+		for (int i = 0; i <taille;i++)
 		{
-			//a verifier, j'ai un doute sur la syntaxe
-			ArrayList<Case> col = new ArrayList<Case>();
-			for (int j = 0; j <=taille;j++)
+			for(int j = 0;j<taille;j++)
 			{
-				col.add(null);
+	    		grille[j][i]=null;
 			}
-			this.grille.add(col);
 		}
 	}
 	
 	public void setCaseGrille(int ligne, int colonne,Contenant bonbon)
 	{
-		ArrayList<Case> line = this.grille.get(ligne);
-		Case nimp =  line.get(colonne);
-		nimp.setBonbon(bonbon);
+		this.grille[ligne][colonne]=new Case(bonbon);
 	}
 	public Contenant getCaseBonbon(int ligne, int colonne)
 	{
-		ArrayList<Case> line = this.grille.get(ligne);
-		Case nimp =  line.get(colonne);
-		return nimp.getBonbon();
+		return this.grille[ligne][colonne].getBonbon();
 	}
 	
 	
