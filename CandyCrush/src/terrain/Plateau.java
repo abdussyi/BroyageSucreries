@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import Exception.CandyException;
 import bonbon.Contenant;
 //penser a faire la fonction qui fait que les bonbon tombent(decale) vers le bas
 public class Plateau {
@@ -109,8 +110,10 @@ public class Plateau {
 	{
 		this.grille[ligne][colonne]=new Case(bonbon);
 	}
-	public Contenant getCaseBonbon(int ligne, int colonne)
+	public Contenant getCaseBonbon(int ligne, int colonne) throws CandyException
 	{
+		if (this.grille[ligne][colonne].getBonbon()==null)
+			throw new CandyException("C'est une case vide");
 		return this.grille[ligne][colonne].getBonbon();
 	}
 	
