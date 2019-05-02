@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 import Exception.CandyException;
@@ -77,7 +76,6 @@ public class Plateau {
 		    }
 		    else
 		    {
-	    		//ArrayList<Case> ligne = new ArrayList<Case>(); 
 		    	for(int i=0;i<taille;i++)
 			    {
 			   		temp = Integer.parseInt(lines[i]);
@@ -126,24 +124,54 @@ public class Plateau {
 		return this.taille;
 	}
 	
-	
+	public Case[][] getGrille()
+	{
+		return this.grille;
+	}
 	//coordonnée du bonbon à echanger sur le tableau en parametre
+	//x correspond a la ligne et y correspond a la colonne
 	public void echange(int x, int y,int x2,int y2) throws CandyException
 	{
-		if(   (x!=x2 && y!=y2)    ||    (   (x2!=x+1||x2!=x-1)     &&     (y2!=y+1||y2!=y-1)   )   )
+		if(caseEstDansGrille(x,y)==false)
+		{
+			throw new CandyException("Case en dehors de la grille");
+		}
+		else if(caseEstDansGrille(x2,y2)==false)
+		{
+			throw new CandyException("Case en dehors de la grille");
+		}
+		if( (x!=x2 && y!=y2))
 		{
 			throw new CandyException("Case non conforme");
 		}
-		else if(x>taille-1||y>taille-1||x2>taille-1||y2>taille-1||x<0||y<0||x2<0||y2<0)
+		else if(x==x2)
 		{
-			throw new IllegalArgumentException("Argument probleme case vide");
+			if(y2>y+1||y2<y-1)
+			{
+				throw new CandyException("Case non conforme");
+			}
+			else
+			{
+				//c'est l'echange
+				Contenant temp = grille[x2][y2].getBonbon();
+				grille[x2][y2].setBonbon(grille[x][y].getBonbon());
+				grille[x][y].setBonbon(temp);
+			}
+
 		}
-		else
+		else if(y==y2)
 		{
-			//c'est l'echange
-			Contenant temp = grille[x2][y2].getBonbon();
-			grille[x2][y2].setBonbon(grille[x][y].getBonbon());
-			grille[x][y].setBonbon(temp);
+			if(x2>x+1 || x2<x-1)
+			{
+				throw new CandyException("Case non conforme");
+			}
+			else
+			{
+				//c'est l'echange
+				Contenant temp = grille[x2][y2].getBonbon();
+				grille[x2][y2].setBonbon(grille[x][y].getBonbon());
+				grille[x][y].setBonbon(temp);
+			}
 		}
 	}
 	

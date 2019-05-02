@@ -11,11 +11,6 @@ public class BonbonSpecial implements Contenant {
 		this.estSpecial=true;
 		setCouleur(couleur);
 	}
-	public BonbonSpecial(boolean estMeringue)
-	{
-		setCouleur(null);
-		estSpecial=true;
-	}
 	
 
 	

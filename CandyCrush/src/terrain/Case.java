@@ -59,7 +59,7 @@ public class Case {
 		}
 		if(bonbon==9)
 		{
-			this.bonbon=new BonbonSpecial(Couleur.MERINGUE);
+			this.bonbon=new BonbonOrdinaire(Couleur.MERINGUE);
 		}
 	}
 
