@@ -56,7 +56,8 @@ public class BonbonOrdinaire implements Contenant{
 	}
 	public boolean estMemeCouleur(Contenant a)
 	{
-		if(a.getCouleur().getClass()==this.couleur.getClass())
+		
+		if(a.getCouleur()==this.couleur)
 			return true;
 		else
 			return false;

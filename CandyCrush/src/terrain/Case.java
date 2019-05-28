@@ -9,17 +9,36 @@ public class Case {
 	//une case contient soit un bonbon, soit rien
 	
 	private Contenant bonbon;
-	
+	private int ligne;
+	private int colonne;
 	
 	
 
 
-	public Case(Contenant bonbon) {
+	public Case(Contenant bonbon, int ligne, int colonne) {
 		setBonbon(bonbon);
+		setColonne(colonne);
+		setLigne(ligne);
 	}
 	
+	public int getLigne() {
+		return ligne;
+	}
+
+	public void setLigne(int ligne) {
+		this.ligne = ligne;
+	}
+
+	public int getColonne() {
+		return colonne;
+	}
+
+	public void setColonne(int colonne) {
+		this.colonne = colonne;
+	}
+
 	//constructeur à partir d'un chiffre qui est utile pour exploiter le fichier plateau
-	public Case(int bonbon)
+	public Case(int bonbon,int ligne, int colonne)
 	{
 		if(bonbon==0)
 		{
@@ -61,6 +80,8 @@ public class Case {
 		{
 			this.bonbon=new BonbonOrdinaire(Couleur.MERINGUE);
 		}
+		setLigne(ligne);
+		setColonne(colonne);
 	}
 
 	public Contenant getBonbon() {
@@ -97,6 +118,8 @@ public class Case {
 		result = prime * result + ((bonbon == null) ? 0 : bonbon.hashCode());
 		return result;
 	}
+	
+
 
 
 	@Override

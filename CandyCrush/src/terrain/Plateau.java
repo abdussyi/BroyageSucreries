@@ -6,8 +6,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
 
-import Exception.CandyException;
 import bonbon.Contenant;
+import exception.CandyException;
 //penser a faire la fonction qui fait que les bonbon tombent(decale) vers le bas
 public class Plateau {
 	
@@ -79,10 +79,10 @@ public class Plateau {
 		    	for(int i=0;i<taille;i++)
 			    {
 			   		temp = Integer.parseInt(lines[i]);
-			   		grille[ligne][i]=new Case(temp);
+			   		grille[ligne][i]=new Case(temp,ligne,i);
 			   	}
 		    	ligne++;
-			    line = br.readLine();         
+			    line = br.readLine();
 
 		    }
 
@@ -110,7 +110,7 @@ public class Plateau {
 	
 	public void setCaseGrille(int ligne, int colonne,Contenant bonbon)
 	{
-		this.grille[ligne][colonne]=new Case(bonbon);
+		this.grille[ligne][colonne]=new Case(bonbon,ligne,colonne);
 	}
 	public Contenant getCaseBonbon(int ligne, int colonne) throws CandyException
 	{
@@ -187,146 +187,6 @@ public class Plateau {
 			return true;
 	}
 	
-	public void dedectionTroisMemeCouleur(int l, int c)
-	{
-		//sauvegarde des voisin de la case afin de faciliter la la lisibilité du code
-		
-		//les case sont numéroté de -2 à 2
-		
-		Case moinsDeux,moinsUn,zero,un,deux;
-		
-		
-		//verification horizontale
-		if(caseEstDansGrille(l, c-2))
-		{
-			moinsDeux = grille[l][c-2];
-		}
-		else
-		{
-			moinsDeux=null;
-		}
-		if(caseEstDansGrille(l, c-1))
-		{
-			moinsUn = grille[l][c-1];
-		}
-		else
-		{
-			moinsUn = null;
-		}
-		if(caseEstDansGrille(l, c))
-		{
-			zero = grille[l][c];
-		}
-		else
-		{
-			zero = null;
-		}
-		if(caseEstDansGrille(l, c+1))
-		{
-			un = grille[l][c+1];
-		}
-		else
-		{
-			un = null;
-		}
-		if(caseEstDansGrille(l, c+2))
-		{
-			deux = grille[l][c+2];
-		}
-		else
-		{
-			deux = null;
-		}
-		
-		if(moinsDeux!=null)
-		{
-			if( moinsDeux.getBonbon().estMemeCouleur(moinsUn.getBonbon())&&moinsUn.getBonbon().estMemeCouleur(zero.getBonbon()))
-			{
-				//il exite une combinaison en -2 -1 et 0
-			}
-		}
-		else if(moinsUn!=null&&un!=null)
-		{
-			if( moinsUn.getBonbon().estMemeCouleur(zero.getBonbon())&&zero.getBonbon().estMemeCouleur(un.getBonbon()))
-			{
-				//il exite une combinaison en  -1 et 0 et 1
-			}
-		}
-		else if(un!=null&&deux!=null)
-		{
-			if( zero.getBonbon().estMemeCouleur(un.getBonbon())&&un.getBonbon().estMemeCouleur(deux.getBonbon()))
-			{
-				//il exite une combinaison en  0,1 et 2
-			}
-		
-		}
-		
-		//verification Verticale
-		if(caseEstDansGrille(l-2, c))
-		{
-			moinsDeux = grille[l-2][c];
-		}
-		else
-		{
-			moinsDeux=null;
-		}
-		if(caseEstDansGrille(l-1, c))
-		{
-			moinsUn = grille[l-1][c];
-		}
-		else
-		{
-			moinsUn = null;
-		}
-		//pas vraiment bseoin de cela
-		if(caseEstDansGrille(l, c))
-		{
-			zero = grille[l][c];
-		}
-		else
-		{
-			zero = null;
-		}
-		if(caseEstDansGrille(l+1, c))
-		{
-			un = grille[l+1][c];
-		}
-		else
-		{
-			un = null;
-		}
-		if(caseEstDansGrille(l+2, c))
-		{
-			deux = grille[l+2][c];
-		}
-		else
-		{
-			deux = null;
-		}
-		
-		if(moinsDeux!=null)
-		{
-			if( moinsDeux.getBonbon().estMemeCouleur(moinsUn.getBonbon())&&moinsUn.getBonbon().estMemeCouleur(zero.getBonbon()))
-			{
-				//il exite une combinaison en -2 -1 et 0
-			}
-		}
-		else if(moinsUn!=null&&un!=null)
-		{
-			if( moinsUn.getBonbon().estMemeCouleur(zero.getBonbon())&&zero.getBonbon().estMemeCouleur(un.getBonbon()))
-			{
-				//il exite une combinaison en  -1 et 0 et 1
-			}
-		}
-		else if(un!=null&&deux!=null)
-		{
-			if( zero.getBonbon().estMemeCouleur(un.getBonbon())&&un.getBonbon().estMemeCouleur(deux.getBonbon()))
-			{
-				//il exite une combinaison en  0,1 et 2
-			}
-		
-		}
-	}
 	
 	public void afficherGrille()
 	{
