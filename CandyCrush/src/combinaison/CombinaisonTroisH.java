@@ -1,5 +1,6 @@
 package combinaison;
 
+import bonbon.BonbonSpecial;
 import bonbon.Couleur;
 import exception.CandyException;
 import terrain.Case;
@@ -157,8 +158,15 @@ public class CombinaisonTroisH extends Combinaison {
 
 	@Override
 	public boolean traitementSpecial(int l, int c, Plateau p) {
-		// TODO Auto-generated method stub
-		return false;
+		if(estCombinaison()==true)
+		{
+			un.setBonbon(new BonbonSpecial(Couleur.VIDE));
+			deux.setBonbon(new BonbonSpecial(Couleur.VIDE));
+			trois.setBonbon(new BonbonSpecial(Couleur.VIDE));
+			return true;
+		}
+		else
+			return false;
 	}
 
 

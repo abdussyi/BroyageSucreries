@@ -94,8 +94,6 @@ public class Plateau {
 		fr.close();
 	}
 	
-	
-	
 	//Cette methode metier, permet d'initaialiser a NULL toutes la grille
 	//c'est une grille carré
 	public void initGrille(int taille)
@@ -132,16 +130,13 @@ public class Plateau {
 		return this.grille;
 	}
 	
-	
-	
-	
-	
 	public void echange_aux(int ligne, int colonne,int ligne2,int colonne2)
 	{
 		Contenant temp = grille[ligne2][colonne2].getBonbon();
 		grille[ligne2][colonne2].setBonbon(grille[ligne][colonne].getBonbon());
 		grille[ligne][colonne].setBonbon(temp);
 	}
+	
 	/*
 	 * Cette fonction verifie deux cases avec les conditions suivantes :
 	 * - les deux cases sont adjacentes
@@ -175,10 +170,20 @@ public class Plateau {
 			else
 			{
 				echange_aux(ligne, colonne,ligne2,colonne2);
+				boolean coord2 = test.detecteur(ligne2, colonne2, this);
+				boolean coord1 = test.detecteur(ligne, colonne, this);
 				if(!(test.detecteur(ligne2, colonne2, this)) && !(test.detecteur(ligne, colonne, this)))
 				{
 					echange_aux(ligne, colonne,ligne2,colonne2);
 					throw new CandyException("echange impossible, il n'y a pas de combinaison");
+				}
+				else if(coord1)
+				{
+					test.traitement(ligne, colonne, this);
+				}
+				else
+				{
+					test.traitement(ligne2, colonne2, this);
 				}
 			}
 
@@ -193,19 +198,23 @@ public class Plateau {
 			{
 				
 				echange_aux(ligne, colonne,ligne2,colonne2);
-				if(!(test.detecteur(ligne2, colonne2, this)) && !(test.detecteur(ligne, colonne, this)))
+				boolean coord2 = test.detecteur(ligne2, colonne2, this);
+				boolean coord1 = test.detecteur(ligne, colonne, this);
+				if(!coord2 && !coord1)
 				{
 					echange_aux(ligne, colonne,ligne2,colonne2);
 					throw new CandyException("echange impossible, il n'y a pas de combinaison");
-				}				
+				}
+				else if(coord1)
+				{
+					test.traitement(ligne, colonne, this);
+				}
+				else
+				{
+					test.traitement(ligne2, colonne2, this);
+				}
 			}
 		}
-	}
-	
-	public boolean echange_verif_combi()
-	{
-		
-		return false;
 	}
 	
 	public boolean caseEstDansGrille(int l, int c)
@@ -218,8 +227,9 @@ public class Plateau {
 			return true;
 	}
 	
-	
 	public void afficherGrille()
+
+
 	{
 		for(int ligne=0;ligne<taille;ligne++)
 		{
@@ -230,6 +240,7 @@ public class Plateau {
 			System.out.print("\n");
 		}
 	}
+	
 	@Override
 	public String toString() {
 		return "Plateau [taille=" + taille + ", grille=" + Arrays.toString(grille) + "]";

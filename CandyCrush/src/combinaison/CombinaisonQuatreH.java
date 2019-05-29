@@ -1,5 +1,6 @@
 package combinaison;
 
+import bonbon.BonbonSpecial;
 import bonbon.Couleur;
 import exception.CandyException;
 import terrain.Case;
@@ -203,15 +204,13 @@ public class CombinaisonQuatreH extends Combinaison{
 	
 	@Override
 	public boolean traitementSpecial(int l, int c, Plateau p) {
-		try {
-			detection(l,c,p);
-		} catch (CandyException e) {
-			// c'etait pas un -- throw new CandyException -- ??
-			e.printStackTrace();
-		}
+
 		if(estCombinaison()==true)
 		{
-			
+			un.setBonbon(new BonbonSpecial(Couleur.VIDE));
+			deux.setBonbon(new BonbonSpecial(Couleur.VIDE));
+			trois.setBonbon(new BonbonSpecial(Couleur.VIDE));
+			quatre.setBonbon(new BonbonSpecial(Couleur.VIDE));
 			return true;
 		}
 		else

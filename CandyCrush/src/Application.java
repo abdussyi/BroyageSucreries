@@ -1,10 +1,3 @@
-import combinaison.ChainsOfRespDetecteur;
-import combinaison.Combinaison;
-import combinaison.CombinaisonChainOfResp;
-import combinaison.CombinaisonQuatreH;
-import combinaison.CombinaisonQuatreV;
-import combinaison.CombinaisonTroisH;
-import combinaison.CombinaisonTroisV;
 import exception.CandyException;
 import terrain.Plateau;
 
@@ -97,7 +90,8 @@ public class Application {
 			System.out.println("PAS RAYE");
 		}
 		
-		plateau.echange(3, 7, 3, 8);
+		plateau.echange(4, 3, 3, 3);
+		
 		plateau.afficherGrille();
 		
 	}
