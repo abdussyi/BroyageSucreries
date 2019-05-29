@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
 
+import bonbon.BonbonOrdinaire;
 import bonbon.Contenant;
 import bonbon.Couleur;
 import combinaison.ChainsOfRespDetecteur;
@@ -14,15 +15,15 @@ import exception.CandyException;
 //penser a faire la fonction qui fait que les bonbon tombent(decale) vers le bas
 public class Plateau {
 	
-	//Deux initialisation possible : un aleatoirement et l'autre par les fichiers du prof
-	//une grille est un ensemble de case
-	//sa taille est carré, et est invariable une fois fixé, c'est pourquoi il n'y a pas de setter
-	
+	/*
+	 * Deux initialisation possible : un aleatoirement et l'autre par les fichiers du prof
+	 * une grille est un ensemble de case
+	 * sa taille est carré, et est invariable une fois fixé, c'est pourquoi il n'y a pas de setter
+	 */
 	private int taille;
 	private Case[][] grille;
 	
 	//il y aura deux constructeur, un qui charge le plateau depuis un fichiers et l'autre aleatoirement
-	
 	public Plateau(String file)
 	{
 		try {
@@ -138,9 +139,10 @@ public class Plateau {
 	}
 	
 	/*
-	 * Cette fonction verifie deux cases avec les conditions suivantes :
+	 * Cette fonction effectue l'echange de deux cases selon les conditions suivantes :
 	 * - les deux cases sont adjacentes
 	 * - les deux cases ne sont pas en dehors de la grille
+	 * - il existe une combinaison dans l'une des deux cases echangé
 	 */
 	public void echange(int ligne, int colonne,int ligne2,int colonne2) throws CandyException
 	{
@@ -172,7 +174,7 @@ public class Plateau {
 				echange_aux(ligne, colonne,ligne2,colonne2);
 				boolean coord2 = test.detecteur(ligne2, colonne2, this);
 				boolean coord1 = test.detecteur(ligne, colonne, this);
-				if(!(test.detecteur(ligne2, colonne2, this)) && !(test.detecteur(ligne, colonne, this)))
+				if(!coord2 && !coord1)
 				{
 					echange_aux(ligne, colonne,ligne2,colonne2);
 					throw new CandyException("echange impossible, il n'y a pas de combinaison");
@@ -238,6 +240,46 @@ public class Plateau {
 				System.out.print("["+grille[ligne][colonne].getBonbon().AfficherCouleur()+"]");
 			}
 			System.out.print("\n");
+		}
+	}
+	
+	
+	//cette fonction decale vers le bas un ensemble de bonbon
+	public void decaleEnsembleColonne(int colonne, int ligneArrive) throws IllegalArgumentException
+	{
+		if(grille[ligneArrive][colonne].getBonbon().getCouleur()!=Couleur.VIDE)
+		{
+			throw new IllegalArgumentException("erreur parametre, la case vers laquelle vous voulez decaler les bonbons doit etre vide");
+		}
+		for(int i=ligneArrive; i>0; i--)
+		{
+			echange_aux(i,colonne,i-1,colonne);
+		}
+		grille[0][colonne].setBonbon(new BonbonOrdinaire(Couleur.VIDE));
+	}
+	
+	/*
+	 * cette fonction fait tomber les bonbon d'une colonne de sorte qu'il n'y ait plus de vide
+	 */
+	public void decaleVersBasColonne(int colonne)
+	{
+		for(int i = 0 ;i<taille-1;i++)
+		{
+			if(grille[i+1][colonne].getBonbon().getCouleur()==Couleur.VIDE)
+			{
+				decaleEnsembleColonne(colonne,i+1);
+			}
+		}
+	}
+	
+	/*
+	 * cette fonction fait tomber tout les bonbons la ou il y a du vide
+	 */
+	public void decaleVersBas()
+	{
+		for(int i=0;i<taille;i++)
+		{
+			decaleVersBasColonne(i);
 		}
 	}
 	

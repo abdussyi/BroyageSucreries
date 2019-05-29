@@ -90,7 +90,9 @@ public class Application {
 			System.out.println("PAS RAYE");
 		}
 		
-		plateau.echange(4, 3, 3, 3);
+		//plateau.echange(4, 3, 3, 3);
+		
+		plateau.decaleVersBas();
 		
 		plateau.afficherGrille();
 		

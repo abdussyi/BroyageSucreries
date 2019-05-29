@@ -91,18 +91,10 @@ public class Case {
 	
 	
 	//en argument mettre object peut etre... à voir
-	
 	public void setBonbon(Contenant bonbon) {
 		this.bonbon = bonbon;
 	}
 	
-	public boolean estVide()
-	{
-		if(bonbon==null)
-			return true;
-		else
-			return false;
-	}
 
 	
 	@Override
