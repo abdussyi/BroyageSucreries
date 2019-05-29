@@ -1,4 +1,6 @@
+import combinaison.ChainsOfRespDetecteur;
 import combinaison.Combinaison;
+import combinaison.CombinaisonChainOfResp;
 import combinaison.CombinaisonQuatreH;
 import combinaison.CombinaisonQuatreV;
 import combinaison.CombinaisonTroisH;
@@ -83,7 +85,6 @@ public class Application {
 		
 		System.out.println("LES ECHANGES \n");
 		System.out.println("Echanger les cases (4,4) avec la case (5,4)");
-		plateau.echange(4, 4, 5, 4);
 		plateau.afficherGrille();
 		System.out.print("Le bonbon situé en (3,4) est-il Jaune : ");
 		System.out.print(plateau.getGrille()[3][4].getBonbon().getCouleur());
@@ -96,10 +97,9 @@ public class Application {
 			System.out.println("PAS RAYE");
 		}
 		
-		CombinaisonQuatreH test = new CombinaisonQuatreH();
-		test.detection(7,0, plateau);
-		System.out.println(test.EstCombinaison());
-				
+		plateau.echange(3, 7, 3, 8);
+		plateau.afficherGrille();
+		
 	}
 		
 	

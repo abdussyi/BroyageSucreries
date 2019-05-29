@@ -23,18 +23,17 @@ public class CombinaisonQuatreV extends Combinaison {
 			deux = null;
 			trois = null;
 			quatre =null;
+			setEstCombinaison(false);
 		}
 		
 		
-		public void detection(int l, int c, Plateau p) throws CandyException{
+		public boolean detection(int l, int c, Plateau p) throws CandyException{
 			
 			//sauvegarde des voisin de la case afin de faciliter la la lisibilité du code
 
 			//les case sont numéroté de -2 à 2
 			
 			Case moinsTrois,moinsDeux,moinsUn,zero,un,deux,trois;
-			
-			
 			//verification Verticale
 			if(p.caseEstDansGrille(l-3, c) && !(p.getCaseBonbon(l-3, c).getCouleur()==Couleur.VIDE))
 			{
@@ -94,7 +93,7 @@ public class CombinaisonQuatreV extends Combinaison {
 				trois=null;
 			}
 			
-			if(moinsTrois!=null && zero!=null)
+			if(moinsTrois!=null && zero!=null && moinsDeux!=null && moinsUn!=null)
 			{
 				if(moinsTrois.getBonbon().estMemeCouleur(moinsDeux.getBonbon()) && moinsDeux.getBonbon().estMemeCouleur(moinsUn.getBonbon()) && moinsUn.getBonbon().estMemeCouleur(zero.getBonbon()))
 				{
@@ -107,7 +106,7 @@ public class CombinaisonQuatreV extends Combinaison {
 					//s'il exite une combinaison en -3 -2 -1 et 0
 				}
 			}
-			if(moinsDeux!=null&& un!=null)
+			if(moinsDeux!=null && un!=null && moinsUn!=null && zero!=null)
 			{
 				if(moinsDeux.getBonbon().estMemeCouleur(moinsUn.getBonbon()) && moinsUn.getBonbon().estMemeCouleur(zero.getBonbon()) && zero.getBonbon().estMemeCouleur(un.getBonbon()))
 				{
@@ -119,7 +118,7 @@ public class CombinaisonQuatreV extends Combinaison {
 					//il exite une combinaison en  -2 -1 et 0 et 1
 				}
 			}
-			if(moinsUn!=null && deux!=null)
+			if(moinsUn!=null && deux!=null && un!=null && zero!=null)
 			{
 				if(moinsUn.getBonbon().estMemeCouleur(zero.getBonbon()) && zero.getBonbon().estMemeCouleur(un.getBonbon()) &&  un.getBonbon().estMemeCouleur(deux.getBonbon()))
 				{
@@ -132,7 +131,7 @@ public class CombinaisonQuatreV extends Combinaison {
 				}
 			
 			}
-			if(zero!=null && trois!=null)
+			if(zero!=null && trois!=null && deux!=null && un!=null)
 			{
 				if(zero.getBonbon().estMemeCouleur(un.getBonbon()) &&  un.getBonbon().estMemeCouleur(deux.getBonbon()) && deux.getBonbon().estMemeCouleur(trois.getBonbon()))
 				{
@@ -145,6 +144,7 @@ public class CombinaisonQuatreV extends Combinaison {
 				}
 			
 			}
+			return estCombinaison();
 			
 		}
 		
@@ -188,7 +188,7 @@ public class CombinaisonQuatreV extends Combinaison {
 		}
 
 
-		public boolean EstCombinaison() {
+		public boolean estCombinaison() {
 			return estCombinaison;
 		}
 

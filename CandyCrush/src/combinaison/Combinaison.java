@@ -36,9 +36,34 @@ public abstract class Combinaison {
         }
         return false;
     }
-
+    
+    public boolean testDetection(int l, int c,Plateau p) {
+        try {
+			if(detection(l,c,p)) {
+				System.out.println(this.getClass());
+				return true;
+			}
+		} catch (CandyException e) {
+			e.printStackTrace();
+		};
+        
+        if(suivant != null) {
+            return suivant.testDetection(l,c,p);
+        }
+        return false;
+    }
+    
+//    public void action(int l, int c, Plateau p)
+//    {
+//    	if(testDetection(l,c,p))
+//    	{
+//    		TraitementCombi(l,c,p);
+//    	}
+//    }
+    
+    
     
     //La fonction traitementSpecial verifie d'abord s'il y a une combinaison, si oui effectue le traitement
     public abstract boolean traitementSpecial(int l, int c,Plateau p);
-    public abstract void detection(int l, int c, Plateau p) throws CandyException;
+    public abstract boolean detection(int l, int c, Plateau p) throws CandyException;
 }

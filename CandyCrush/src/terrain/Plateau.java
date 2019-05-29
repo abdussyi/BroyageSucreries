@@ -7,6 +7,9 @@ import java.io.IOException;
 import java.util.Arrays;
 
 import bonbon.Contenant;
+import bonbon.Couleur;
+import combinaison.ChainsOfRespDetecteur;
+import combinaison.Combinaison;
 import exception.CandyException;
 //penser a faire la fonction qui fait que les bonbon tombent(decale) vers le bas
 public class Plateau {
@@ -128,54 +131,82 @@ public class Plateau {
 	{
 		return this.grille;
 	}
-	//coordonnée du bonbon à echanger sur le tableau en parametre
-	//x correspond a la ligne et y correspond a la colonne
-	public void echange(int x, int y,int x2,int y2) throws CandyException
+	
+	
+	
+	
+	
+	public void echange_aux(int ligne, int colonne,int ligne2,int colonne2)
 	{
-		if(caseEstDansGrille(x,y)==false)
+		Contenant temp = grille[ligne2][colonne2].getBonbon();
+		grille[ligne2][colonne2].setBonbon(grille[ligne][colonne].getBonbon());
+		grille[ligne][colonne].setBonbon(temp);
+	}
+	/*
+	 * Cette fonction verifie deux cases avec les conditions suivantes :
+	 * - les deux cases sont adjacentes
+	 * - les deux cases ne sont pas en dehors de la grille
+	 */
+	public void echange(int ligne, int colonne,int ligne2,int colonne2) throws CandyException
+	{
+		ChainsOfRespDetecteur test = new ChainsOfRespDetecteur();
+		if(getCaseBonbon(ligne, colonne).getCouleur()==Couleur.MERINGUE || getCaseBonbon(ligne2, colonne2).getCouleur()==Couleur.MERINGUE)
+		{
+			throw new CandyException("Echange impossible avec une meringue");
+		}
+		else if(caseEstDansGrille(ligne,colonne)==false)
 		{
 			throw new CandyException("Case en dehors de la grille");
 		}
-		else if(caseEstDansGrille(x2,y2)==false)
+		else if(caseEstDansGrille(ligne2,colonne2)==false)
 		{
 			throw new CandyException("Case en dehors de la grille");
 		}
-		if( (x!=x2 && y!=y2))
+		if( (ligne!=ligne2 && colonne!=colonne2))
 		{
-			throw new CandyException("Case non conforme");
+			throw new CandyException("Case non conforme, il n'est pas adjacent");
 		}
-		else if(x==x2)
+		else if(ligne==ligne2)
 		{
-			if(y2>y+1||y2<y-1)
+			if(colonne2>colonne+1||colonne2<colonne-1)
 			{
-				throw new CandyException("Case non conforme");
+				throw new CandyException("Case non conforme, beaucoup trop eloigné");
 			}
 			else
 			{
-				//c'est l'echange
-				Contenant temp = grille[x2][y2].getBonbon();
-				grille[x2][y2].setBonbon(grille[x][y].getBonbon());
-				grille[x][y].setBonbon(temp);
+				echange_aux(ligne, colonne,ligne2,colonne2);
+				if(!(test.detecteur(ligne2, colonne2, this)) && !(test.detecteur(ligne, colonne, this)))
+				{
+					echange_aux(ligne, colonne,ligne2,colonne2);
+					throw new CandyException("echange impossible, il n'y a pas de combinaison");
+				}
 			}
 
 		}
-		else if(y==y2)
+		else if(colonne==colonne2)
 		{
-			if(x2>x+1 || x2<x-1)
+			if(ligne2>ligne+1 || ligne2<ligne-1)
 			{
-				throw new CandyException("Case non conforme");
+				throw new CandyException("Case non conforme, beaucoup trop eloigné");
 			}
 			else
 			{
-				//c'est l'echange
-				Contenant temp = grille[x2][y2].getBonbon();
-				grille[x2][y2].setBonbon(grille[x][y].getBonbon());
-				grille[x][y].setBonbon(temp);
+				
+				echange_aux(ligne, colonne,ligne2,colonne2);
+				if(!(test.detecteur(ligne2, colonne2, this)) && !(test.detecteur(ligne, colonne, this)))
+				{
+					echange_aux(ligne, colonne,ligne2,colonne2);
+					throw new CandyException("echange impossible, il n'y a pas de combinaison");
+				}				
 			}
 		}
 	}
 	
-	
+	public boolean echange_verif_combi()
+	{
+		
+		return false;
+	}
 	
 	public boolean caseEstDansGrille(int l, int c)
 	{

@@ -8,7 +8,7 @@ import terrain.Plateau;
 /**
  * Sous-classe concrète qui définit un maillon de la chaine.
  */
-public class CombinaisonQuatreH extends Combinaison {
+public class CombinaisonQuatreH extends Combinaison{
 
 	//Les eventuels cases de combinaison que nous sauvegardons
 	private Case un;
@@ -23,17 +23,19 @@ public class CombinaisonQuatreH extends Combinaison {
 		deux = null;
 		trois = null;
 		quatre =null;
+		setEstCombinaison(false);
 	}
 	
-	
-	public void detection(int l, int c, Plateau p) throws CandyException {
+	/*
+	 * cette fonction detecte une eventuelle combinaison et la sauvegarde dans les champs
+	 */
+	public boolean detection(int l, int c, Plateau p) throws CandyException {
 		
 		//sauvegarde des voisin de la case afin de faciliter la la lisibilité du code
 
 		//les case sont numéroté de -2 à 2
 		
 		Case moinsTrois,moinsDeux,moinsUn,zero,un,deux,trois;
-		
 		
 		//verification Verticale
 		if(p.caseEstDansGrille(l, c-3) && !(p.getCaseBonbon(l, c-3).getCouleur()==Couleur.VIDE))
@@ -94,7 +96,7 @@ public class CombinaisonQuatreH extends Combinaison {
 			trois=null;
 		}
 		
-		if(moinsTrois!=null && zero!=null)
+		if(moinsTrois!=null && zero!=null && moinsDeux!=null && moinsUn!=null)
 		{
 			if(moinsTrois.getBonbon().estMemeCouleur(moinsDeux.getBonbon()) && moinsDeux.getBonbon().estMemeCouleur(moinsUn.getBonbon()) && moinsUn.getBonbon().estMemeCouleur(zero.getBonbon()))
 			{
@@ -107,7 +109,7 @@ public class CombinaisonQuatreH extends Combinaison {
 				//s'il exite une combinaison en -3 -2 -1 et 0
 			}
 		}
-		if(moinsDeux!=null&& un!=null)
+		if(moinsDeux!=null && un!=null && moinsUn!=null && zero!=null)
 		{
 			if(moinsDeux.getBonbon().estMemeCouleur(moinsUn.getBonbon()) && moinsUn.getBonbon().estMemeCouleur(zero.getBonbon()) && zero.getBonbon().estMemeCouleur(un.getBonbon()))
 			{
@@ -119,7 +121,7 @@ public class CombinaisonQuatreH extends Combinaison {
 				//il exite une combinaison en  -2 -1 et 0 et 1
 			}
 		}
-		if(moinsUn!=null && deux!=null)
+		if(moinsUn!=null && deux!=null && un!=null && zero!=null)
 		{
 			if(moinsUn.getBonbon().estMemeCouleur(zero.getBonbon()) && zero.getBonbon().estMemeCouleur(un.getBonbon()) &&  un.getBonbon().estMemeCouleur(deux.getBonbon()))
 			{
@@ -132,7 +134,7 @@ public class CombinaisonQuatreH extends Combinaison {
 			}
 		
 		}
-		if(zero!=null && trois!=null)
+		if(zero!=null && trois!=null && deux!=null && un!=null)
 		{
 			if(zero.getBonbon().estMemeCouleur(un.getBonbon()) &&  un.getBonbon().estMemeCouleur(deux.getBonbon()) && deux.getBonbon().estMemeCouleur(trois.getBonbon()))
 			{
@@ -145,6 +147,7 @@ public class CombinaisonQuatreH extends Combinaison {
 			}
 		
 		}
+		return estCombinaison();
 		
 	}
 	
@@ -188,7 +191,7 @@ public class CombinaisonQuatreH extends Combinaison {
 	}
 
 
-	public boolean EstCombinaison() {
+	public boolean estCombinaison() {
 		return estCombinaison;
 	}
 
@@ -206,7 +209,7 @@ public class CombinaisonQuatreH extends Combinaison {
 			// c'etait pas un -- throw new CandyException -- ??
 			e.printStackTrace();
 		}
-		if(EstCombinaison()==true)
+		if(estCombinaison()==true)
 		{
 			
 			return true;

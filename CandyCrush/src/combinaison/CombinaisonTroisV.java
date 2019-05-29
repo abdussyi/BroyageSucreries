@@ -19,10 +19,11 @@ public class CombinaisonTroisV extends Combinaison {
 		un = null;
 		deux = null;
 		trois = null;
+		setEstCombinaison(false);
 	}
 	
 	
-	public void detection(int l, int c, Plateau p) throws CandyException{
+	public boolean detection(int l, int c, Plateau p) throws CandyException{
 		
 		//sauvegarde des voisin de la case afin de faciliter la la lisibilité du code
 
@@ -73,7 +74,7 @@ public class CombinaisonTroisV extends Combinaison {
 			deux = null;
 		}
 		
-		if(moinsDeux!=null)
+		if(moinsDeux!=null && zero!=null && moinsUn!=null)
 		{
 			if( moinsDeux.getBonbon().estMemeCouleur(moinsUn.getBonbon())&&moinsUn.getBonbon().estMemeCouleur(zero.getBonbon()))
 			{
@@ -82,9 +83,10 @@ public class CombinaisonTroisV extends Combinaison {
 				setDeux(moinsUn);
 				setTrois(zero);
 				//il exite une combinaison en -2 -1 et 0
+				
 			}
 		}
-		if(moinsUn!=null&&un!=null)
+		if(moinsUn!=null && un!=null && zero!=null)
 		{
 			if( moinsUn.getBonbon().estMemeCouleur(zero.getBonbon())&&zero.getBonbon().estMemeCouleur(un.getBonbon()))
 			{
@@ -95,7 +97,7 @@ public class CombinaisonTroisV extends Combinaison {
 				//il exite une combinaison en  -1 et 0 et 1
 			}
 		}
-		if(zero!=null&&deux!=null)
+		if(zero!=null && deux!=null && un!=null)
 		{
 			if( zero.getBonbon().estMemeCouleur(un.getBonbon())&&un.getBonbon().estMemeCouleur(deux.getBonbon()))
 			{
@@ -107,6 +109,7 @@ public class CombinaisonTroisV extends Combinaison {
 			}
 		
 		}
+		return estCombinaison();
 		
 	}
 	
@@ -140,7 +143,7 @@ public class CombinaisonTroisV extends Combinaison {
 	}
 
 
-	public boolean EstCombinaison() {
+	public boolean estCombinaison() {
 		return estCombinaison;
 	}
 
