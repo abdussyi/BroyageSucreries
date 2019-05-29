@@ -263,6 +263,7 @@ public class Plateau {
 	 */
 	public void decaleVersBasColonne(int colonne)
 	{
+		ChainsOfRespDetecteur test = new ChainsOfRespDetecteur();
 		for(int i = 0 ;i<taille-1;i++)
 		{
 			if(grille[i+1][colonne].getBonbon().getCouleur()==Couleur.VIDE)

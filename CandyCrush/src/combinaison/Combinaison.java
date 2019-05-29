@@ -53,14 +53,6 @@ public abstract class Combinaison {
         return false;
     }
     
-//    public void action(int l, int c, Plateau p)
-//    {
-//    	if(testDetection(l,c,p))
-//    	{
-//    		TraitementCombi(l,c,p);
-//    	}
-//    }
-    
     
     
     //La fonction traitementSpecial verifie d'abord s'il y a une combinaison, si oui effectue le traitement
