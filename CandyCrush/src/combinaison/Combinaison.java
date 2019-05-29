@@ -37,6 +37,8 @@ public abstract class Combinaison {
         return false;
     }
 
+    
+    //La fonction traitementSpecial verifie d'abord s'il y a une combinaison, si oui effectue le traitement
     public abstract boolean traitementSpecial(int l, int c,Plateau p);
     public abstract void detection(int l, int c, Plateau p) throws CandyException;
 }

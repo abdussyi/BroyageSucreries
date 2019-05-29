@@ -26,7 +26,7 @@ public class CombinaisonQuatreH extends Combinaison {
 	}
 	
 	
-	public void detection(int l, int c, Plateau p) throws CandyException{
+	public void detection(int l, int c, Plateau p) throws CandyException {
 		
 		//sauvegarde des voisin de la case afin de faciliter la la lisibilité du code
 
@@ -197,10 +197,22 @@ public class CombinaisonQuatreH extends Combinaison {
 		this.estCombinaison = estCombinaison;
 	}
 
-
+	
 	@Override
 	public boolean traitementSpecial(int l, int c, Plateau p) {
-		// TODO Auto-generated method stub
-		return false;
+		try {
+			detection(l,c,p);
+		} catch (CandyException e) {
+			// c'etait pas un -- throw new CandyException -- ??
+			e.printStackTrace();
+		}
+		if(EstCombinaison()==true)
+		{
+			
+			return true;
+		}
+		else
+			return false;
+		
 	}
 }
