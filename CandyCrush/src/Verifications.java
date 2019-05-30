@@ -1,3 +1,4 @@
+import exception.CandyException;
 import terrain.Plateau;
 
 //classe qui est utile pour compacter les verifications demandé par le prof
@@ -8,7 +9,6 @@ public class Verifications {
 	{
 		//test des consultations
 				Plateau plateau = new Plateau("plateaux/plateau_demo.csv");
-				plateau.afficherGrille();
 				System.out.print("Quelle est la couleur du bonbon situé en (3,2) ? Réponse : ");
 				System.out.println(plateau.getGrille()[3][2].getBonbon().getCouleur());
 				System.out.print("Le bonbon situé en (3,2) est-il rayé ? Réponse : ");
@@ -58,7 +58,7 @@ public class Verifications {
 					System.out.print("Quelle est la couleur du bonbon situé en (3,10) ? Réponse : ");
 					System.out.println(plateau.getGrille()[3][10].getBonbon().getCouleur());
 				} catch (Exception e) {
-					// TODO Auto-generated catch block
+					
 					e.printStackTrace();
 				}
 				
@@ -91,10 +91,12 @@ public class Verifications {
 					System.out.println("PAS RAYE");
 				}
 				
-				//plateau.echange(4, 3, 3, 3);
+				try {
+					plateau.echange(4, 3, 3, 3);
+				} catch (CandyException e) {
+					e.printStackTrace();
+				}
 				
-				plateau.decaleVersBas();
 				
-				plateau.afficherGrille();
 	}
 }

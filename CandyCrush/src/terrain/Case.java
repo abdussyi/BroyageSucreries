@@ -13,7 +13,50 @@ public class Case {
 	private int colonne;
 	
 	
+	public int getBonbonNum()
+	{
+		if(bonbon.estSpecial())
+		{
+			switch (bonbon.getCouleur())
+			{
 
+			case VIDE:
+				return 0;	
+			case MERINGUE:
+				return 9;
+			case BLEU:
+				return 5;
+			case VIOLET:
+				return 6;
+			case JAUNE:
+				return 7;
+			case VERT:
+				return 8;
+			default:
+				return -1;
+			}
+		}
+		else
+		{
+			switch (bonbon.getCouleur())
+			{
+			case VIDE:
+				return 0;
+			case MERINGUE:
+				return 9;
+			case BLEU:
+				return 1;
+			case VIOLET:
+				return 2;
+			case JAUNE:
+				return 3;
+			case VERT:
+				return 4;
+			default:
+				return -1;
+			}
+		}
+	}
 
 	public Case(Contenant bonbon, int ligne, int colonne) {
 		setBonbon(bonbon);

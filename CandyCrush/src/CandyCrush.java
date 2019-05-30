@@ -1,5 +1,7 @@
 
 
+
+import exception.CandyException;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -21,6 +23,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import terrain.Plateau;
+
 
 
 public class CandyCrush extends Application {
@@ -64,7 +68,7 @@ public class CandyCrush extends Application {
 	private Label lChrono;
 	private	int secondesEcoulees = 0;
 	private Timeline timelineChrono;
-	
+	private Plateau plateau;
 	/**
 	 * Tableau 2D d'entiers. Chaque entier correspond à l'indice d'une image (0-->Candy_0, 1-->Candy_1,...)
 	 * Faudra faire mieux évidemment dans le projet...
@@ -77,7 +81,7 @@ public class CandyCrush extends Application {
 		try {
 			primaryStage.setTitle("Candy Crush");
 
-			
+			plateau = new Plateau("plateaux/plateau_demo.csv");
 			initImagesCandies();
 			
 			root = new BorderPane(grillePane);
@@ -92,7 +96,7 @@ public class CandyCrush extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.show();
 
-			
+			//faire une fonction qui dessine une classe Plateau
 			demarrerPartie();
 
 		} catch (Exception e) {
@@ -276,10 +280,11 @@ public class CandyCrush extends Application {
 	}
 
 	private void dessinerPlateau() {
-
+		int temp;
 		for (int l = 0; l < 10; l++) {
 			for (int c = 0; c < 10; c++) {
-				gc.drawImage(candies[grille[l][c]], c * 64, l * 64);
+				temp=plateau.getGrille()[l][c].getBonbonNum();
+				gc.drawImage(candies[temp], c * 64, l * 64);
 			}
 		}
 	}
@@ -295,6 +300,8 @@ public class CandyCrush extends Application {
 			e.printStackTrace();
 		}
 	}
+	
+	
 
 	private final class KeyFrame2 implements EventHandler<ActionEvent> {
 		public void handle(ActionEvent event) {
@@ -339,7 +346,7 @@ public class CandyCrush extends Application {
 			/**
 			 * On définit l'image qui va suivre la souris pendant le DnD
 			 */
-			db.setDragView(candies[grille[l][c]]);
+			db.setDragView(candies[plateau.getGrille()[l][c].getBonbonNum()]);
 
 			ClipboardContent content = new ClipboardContent();
 			content.putString("");
@@ -393,9 +400,15 @@ public class CandyCrush extends Application {
 			ct = xf / 64;
 
 			/** On échange les deux entiers, c'est tout ce que l'on fait dans la démo */
-			int temp = grille[ls][cs];
-			grille[ls][cs] = grille[lt][ct];
-			grille[lt][ct] = temp;
+			
+			try {
+				plateau.echange(ls, cs, lt, ct);
+				plateau.decaleVersBas();
+			} catch (CandyException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
 		}
 	}
 

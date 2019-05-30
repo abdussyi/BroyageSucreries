@@ -22,13 +22,13 @@ public class Level {
 	
 	
 	//load depuis un fichier
-	public Level(String rep, String nomJoueur) throws IOException
+	public Level(String repertoire, String nomJoueur) throws IOException
 	{
 		setNbDeplacement(0);
 		setScoreMax(0);
 		setTemps(0);
 		setNomJoueur(nomJoueur);
-		loadTypePartie(rep);
+		loadTypePartie(repertoire);
 	}
 	
 	//Constructeur manuel, peu utile

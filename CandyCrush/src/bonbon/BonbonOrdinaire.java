@@ -20,8 +20,7 @@ public class BonbonOrdinaire implements Contenant{
 	public Couleur getCouleur() {
 		return couleur;
 	}
-
-
+	
 
 	public boolean estSpecial() {
 		return estSpecial;
