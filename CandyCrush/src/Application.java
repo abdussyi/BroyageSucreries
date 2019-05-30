@@ -14,6 +14,6 @@ public class Application {
 		plateau.decaleVersBas();
 		plateau.afficherGrille();
 	}
-		
+	
 	
 }
