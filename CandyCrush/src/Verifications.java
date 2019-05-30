@@ -7,7 +7,7 @@ public class Verifications {
 	public void test()
 	{
 		//test des consultations
-				Plateau plateau = new Plateau("/Users/abduss/Documents/BPOO/plateaux/plateau_demo.csv");
+				Plateau plateau = new Plateau("plateaux/plateau_demo.csv");
 				plateau.afficherGrille();
 				System.out.print("Quelle est la couleur du bonbon situé en (3,2) ? Réponse : ");
 				System.out.println(plateau.getGrille()[3][2].getBonbon().getCouleur());

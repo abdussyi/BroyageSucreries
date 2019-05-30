@@ -8,7 +8,7 @@ public class Application {
 		
 //		Verifications verif = new Verifications();
 //		verif.test();
-		Plateau plateau = new Plateau("/Users/abduss/Documents/BPOO/plateaux/plateau_demo.csv");
+		Plateau plateau = new Plateau("plateaux/plateau_demo.csv");
 		plateau.afficherGrille();
 		System.out.println("");
 		plateau.decaleVersBas();
