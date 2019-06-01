@@ -1,7 +1,6 @@
 package combinaison;
 
-import bonbon.BonbonSpecial;
-import bonbon.Couleur;
+
 import bonbon.Vide;
 import exception.CandyException;
 import terrain.Case;
@@ -32,6 +31,11 @@ public class CombinaisonQuatreV extends Combinaison {
 		
 		public boolean detection(int l, int c, Plateau p) throws CandyException{
 			
+			//4, 2, 5, 2
+			if((l==4 && c == 2)||(l==5 && c == 2))
+			{
+				System.out.println("");
+			}
 			//sauvegarde des voisin de la case afin de faciliter la la lisibilité du code
 
 			//les case sont numéroté de -2 à 2

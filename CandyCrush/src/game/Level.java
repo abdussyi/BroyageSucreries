@@ -2,12 +2,9 @@ package game;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
 
-import terrain.Case;
 
 public class Level {
 	
@@ -51,7 +48,6 @@ public class Level {
 			FileReader fr = new FileReader(file);
 			BufferedReader br = new BufferedReader(fr);
 			String line;
-			int temp;
 			//go à la premiere ligne
 			line = br.readLine();
 			

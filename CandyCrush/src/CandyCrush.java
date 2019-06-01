@@ -1,4 +1,3 @@
-import combinaison.ChainsOfRespDetecteur;
 import exception.CandyException;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -72,7 +71,6 @@ public class CandyCrush extends Application {
 	 * Tableau 2D d'entiers. Chaque entier correspond à l'indice d'une image (0-->Candy_0, 1-->Candy_1,...)
 	 * Faudra faire mieux évidemment dans le projet...
 	 */
-	private	int[][] grille = new int[10][10];
 
 
 	@Override
@@ -126,7 +124,6 @@ public class CandyCrush extends Application {
 
 
 	private void initGrille() {
-		creerGrilleTest();
 
 		
 		grillePane = new Canvas(640, 640);
@@ -141,110 +138,7 @@ public class CandyCrush extends Application {
 
 	}
 
-	private void creerGrilleTest() {
-		/**
-		 * Pour cette démo, on initialise une simple grille "en dur" pour faire des tests.
-		 * D'abord on la remplit de vide, puis on place quelques combinaisons
-		 */
-		int Vide = 0; 
-		for (int l=0; l<10; l++) {
-			for (int c=0; c<10; c++) {
-				grille[l][c] = Vide;
-			}
-		}
-		
-		
-		/**
-		 * On ajoute 3 bonbons bleus alignés horizontalement et commençant en (2,4)
-		 */
-		int Bleu = 1;
-		grille[2][4] = Bleu;
-		grille[2][5] = Bleu;
-		grille[2][6] = Bleu;
-		
-		/**
-		 * On ajoute 3 bonbons violets alignés verticalement et commençant en (2,7)
-		 */
-		int Violet = 2;
-		grille[2][7] = Violet;
-		grille[3][7] = Violet;
-		grille[4][7] = Violet;
-		
-		/**
-		 * On ajoute 3 bonbons jaunes alignés horizontalement et commençant en (3,3). Le bonbon du milieu est rayé
-		 */
-		int Jaune = 3;
-		grille[3][3] = Jaune;
-		grille[3][4] = Jaune+4;
-		grille[3][5] = Jaune;
-		
-		
-		/**
-		 * On ajoute 3 bonbons verts alignés verticalement et commençant en (2,2). Le bonbon du bas est rayé
-		 */
-		int Vert = 4;
-		grille[2][2] = Vert;
-		grille[3][2] = Vert;
-		grille[4][2] = Vert+4;
-
-		/**
-		 * On ajoute 4 bonbons verts alignés verticalement et commençant en (3,6). Le bonbon du bas est rayé
-		 */
-		grille[3][6] = Vert;
-		grille[4][6] = Vert;
-		grille[5][6] = Vert;
-		grille[6][6] = Vert;		
-		
-		/**
-		 * On ajoute 4 bonbons jaunes alignés horizontalement et commençant en (7,4). Le bonbon du bas est rayé
-		 */
-		grille[7][4] = Jaune;
-		grille[7][5] = Jaune;
-		grille[7][6] = Jaune;
-		grille[7][7] = Jaune;
-
-		/**
-		 * On ajoute 9 bonbons au milieu de la grille pour lesquels il n'y a pas de combinaisons
-		 * Mais si l'on échange (4,4) et (5,4) alors une combinaison de 3 verts apparaît
-		 */
-		grille[4][3] = Jaune;
-		grille[4][4] = Vert;
-		grille[4][5] = Violet;
-		grille[5][3] = Bleu;
-		grille[5][4] = Bleu;
-		grille[5][5] = Vert;		
-		grille[6][3] = Bleu;
-		grille[6][4] = Jaune;
-		grille[6][5] = Violet;
-		
-		/**
-		 * On place une meringue en (3,8)
-		 */
-		int Meringue = 9;
-		grille[3][8] = Meringue;
-		
-		/**
-		 * Si l'on échange ces deux cases, une combinaison de 4 vilets apparaît, donc bonbon rayé
-		 */
-		grille[1][6] = Violet;
-		grille[1][7] = Bleu;
-		
-		
-		
-		/** 
-		 * Pour afficher la liste des images
-		 */
-		grille[9][0] = 0;
-		grille[9][1] = 1;
-		grille[9][2] = 2;
-		grille[9][3] = 3;
-		grille[9][4] = 4;
-		grille[9][5] = 5;
-		grille[9][6] = 6;
-		grille[9][7] = 7;
-		grille[9][8] = 8;
-		grille[9][9] = 9;
-	}
+	
 
 	private void initTimelineChrono() {
 		// Cette KeyFrame apparaît 1s après le début de la timeline

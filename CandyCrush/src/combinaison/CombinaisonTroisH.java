@@ -1,7 +1,6 @@
 package combinaison;
 
-import bonbon.BonbonSpecial;
-import bonbon.Couleur;
+
 import bonbon.Vide;
 import exception.CandyException;
 import terrain.Case;
@@ -48,6 +47,11 @@ public class CombinaisonTroisH extends Combinaison {
 		
 		Case moinsDeux,moinsUn,zero,un,deux;
 
+		if((l==4 && c == 2)||(l==5 && c == 2))
+		{
+			System.out.println("");
+		}
+		
 		//verification horizontale
 		if(p.caseEstDansGrille(l, c-2) && !(p.getCaseBonbon(l, c-2).estVide()))
 		{

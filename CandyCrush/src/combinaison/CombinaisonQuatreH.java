@@ -1,7 +1,6 @@
 package combinaison;
 
-import bonbon.BonbonSpecial;
-import bonbon.Couleur;
+
 import bonbon.Vide;
 import exception.CandyException;
 import terrain.Case;

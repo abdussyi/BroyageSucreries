@@ -1,8 +1,5 @@
 package terrain;
 
-import bonbon.BonbonOrdinaire;
-import bonbon.Contenant;
-import bonbon.Couleur;
 import combinaison.ChainsOfRespDetecteur;
 
 public class OutilsPlateau{

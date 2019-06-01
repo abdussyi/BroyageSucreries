@@ -1,7 +1,5 @@
 package combinaison;
 
-import bonbon.BonbonSpecial;
-import bonbon.Couleur;
 import bonbon.Vide;
 import exception.CandyException;
 import terrain.Case;
@@ -42,6 +40,13 @@ public class CombinaisonTroisV extends Combinaison {
 		//sauvegarde des voisin de la case afin de faciliter la la lisibilité du code
 
 		//les case sont numéroté de -2 à 2
+		
+		//4, 2, 5, 2
+		if((l==4 && c == 2)||(l==5 && c == 2))
+		{
+			System.out.println("");
+		}
+		
 		
 		Case moinsDeux,moinsUn,zero,un,deux;
 

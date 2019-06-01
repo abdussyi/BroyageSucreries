@@ -6,14 +6,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
 
-import bonbon.BonbonOrdinaire;
 import bonbon.Contenant;
-import bonbon.Couleur;
+
 import bonbon.Vide;
 import combinaison.ChainsOfRespDetecteur;
-import combinaison.Combinaison;
 import exception.CandyException;
-//penser a faire la fonction qui fait que les bonbon tombent(decale) vers le bas
+
+
 public class Plateau {
 	
 	/*
@@ -305,14 +304,6 @@ public class Plateau {
 		return "Plateau [taille=" + taille + ", grille=" + Arrays.toString(grille) + "]";
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + Arrays.deepHashCode(grille);
-		result = prime * result + taille;
-		return result;
-	}
 
 	@Override
 	public boolean equals(Object obj) {
