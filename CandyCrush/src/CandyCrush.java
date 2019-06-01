@@ -21,6 +21,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import terrain.OutilsPlateau;
 import terrain.Plateau;
 
 
@@ -404,20 +405,24 @@ public class CandyCrush extends Application {
 				plateau.echange(ls, cs, lt, ct);
 				plateau.decaleVersBas();
 				
-				//il faut corriger certains trucs ici
-				for(int ligne = 0;ligne<taille;ligne++)
-				{
-					for(int colonne=0;colonne<taille;colonne++)
-					{
-						ChainsOfRespDetecteur test = new ChainsOfRespDetecteur();
-						if(test.detecteur(ligne, colonne, plateau)==true)
-						{
-							test.traitement(ligne, colonne, plateau);
-							plateau.decaleVersBas();
-						}
-
-					}
-				}
+				//il fauudrait une fonction qui teste toutes les cases modifié
+				//arretez de cherchez si aucune combinaison a ete trouvé sur toute la grille
+				//cette boucle parcours tout le tableau et recherche des combi
+//				for(int ligne = 0;ligne<taille;ligne++)
+//				{
+//					for(int colonne=0;colonne<taille;colonne++)
+//					{
+//						ChainsOfRespDetecteur test = new ChainsOfRespDetecteur();
+//						if(test.detecteur(ligne, colonne, plateau)==true)
+//						{
+//							test.traitement(ligne, colonne, plateau);
+//							plateau.decaleVersBas();
+//						}
+//
+//					}
+//				}
+				OutilsPlateau outils = new OutilsPlateau();
+				outils.traitementPlateauAll(plateau);
 
 				
 			} catch (CandyException e) {
