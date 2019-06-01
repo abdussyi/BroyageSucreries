@@ -17,6 +17,7 @@ public class CombinaisonQuatreV extends Combinaison {
 		private Case trois;
 		private Case quatre;
 		private boolean estCombinaison;
+		private boolean estCombiRaye;
 		
 		public CombinaisonQuatreV()
 		{
@@ -99,7 +100,7 @@ public class CombinaisonQuatreV extends Combinaison {
 				if(moinsTrois.getBonbon().estMemeCouleur(moinsDeux.getBonbon()) && moinsDeux.getBonbon().estMemeCouleur(moinsUn.getBonbon()) && moinsUn.getBonbon().estMemeCouleur(zero.getBonbon()))
 				{
 					setEstCombinaison(true);
-					
+					setEstCombiRaye(verifRaye(moinsDeux,moinsUn,zero,moinsTrois));
 					setUn(moinsTrois);
 					setDeux(moinsDeux);
 					setTrois(moinsUn);
@@ -112,6 +113,7 @@ public class CombinaisonQuatreV extends Combinaison {
 				if(moinsDeux.getBonbon().estMemeCouleur(moinsUn.getBonbon()) && moinsUn.getBonbon().estMemeCouleur(zero.getBonbon()) && zero.getBonbon().estMemeCouleur(un.getBonbon()))
 				{
 					setEstCombinaison(true);
+					setEstCombiRaye(verifRaye(moinsDeux,moinsUn,zero,un));
 					setUn(moinsDeux);
 					setDeux(moinsUn);
 					setTrois(zero);
@@ -124,6 +126,7 @@ public class CombinaisonQuatreV extends Combinaison {
 				if(moinsUn.getBonbon().estMemeCouleur(zero.getBonbon()) && zero.getBonbon().estMemeCouleur(un.getBonbon()) &&  un.getBonbon().estMemeCouleur(deux.getBonbon()))
 				{
 					setEstCombinaison(true);
+					setEstCombiRaye(verifRaye(deux,moinsUn,zero,un));
 					setUn(moinsUn);
 					setDeux(zero);
 					setTrois(un);
@@ -137,6 +140,7 @@ public class CombinaisonQuatreV extends Combinaison {
 				if(zero.getBonbon().estMemeCouleur(un.getBonbon()) &&  un.getBonbon().estMemeCouleur(deux.getBonbon()) && deux.getBonbon().estMemeCouleur(trois.getBonbon()))
 				{
 					setEstCombinaison(true);
+					setEstCombiRaye(verifRaye(deux,trois,zero,un));
 					setUn(zero);
 					setDeux(un);
 					setTrois(deux);
@@ -147,6 +151,26 @@ public class CombinaisonQuatreV extends Combinaison {
 			}
 			return estCombinaison();
 			
+		}
+		
+		public boolean verifRaye(Case a,Case b, Case c, Case d)
+		{
+			if(a.getBonbon().estSpecial() || b.getBonbon().estSpecial() || c.getBonbon().estSpecial() || d.getBonbon().estSpecial())
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
+		}
+		
+		public boolean estCombiRaye() {
+			return estCombiRaye;
+		}
+
+		public void setEstCombiRaye(boolean estCombiRaye) {
+			this.estCombiRaye = estCombiRaye;
 		}
 		
 	    public Case getQuatre() {
@@ -201,7 +225,12 @@ public class CombinaisonQuatreV extends Combinaison {
 
 		@Override
 		public boolean traitementSpecial(int l, int c, Plateau p) {
-			if(estCombinaison()==true)
+			if(estCombinaison()==true && estCombiRaye())
+			{
+				p.supprColonne(un.getColonne());
+				return true;
+			}
+			else if(estCombinaison()==true)
 			{
 				un.setBonbon(new BonbonSpecial(Couleur.VIDE));
 				deux.setBonbon(new BonbonSpecial(Couleur.VIDE));

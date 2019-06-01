@@ -244,7 +244,7 @@ public class Plateau {
 	}
 	
 	
-	//cette fonction decale vers le bas un ensemble de bonbon
+	//cette fonction decale vers le bas un ensemble de bonbon, c'est utile pour decaleVersBasColonne
 	public void decaleEnsembleColonne(int colonne, int ligneArrive) throws IllegalArgumentException
 	{
 		if(grille[ligneArrive][colonne].getBonbon().getCouleur()!=Couleur.VIDE)
@@ -280,6 +280,22 @@ public class Plateau {
 		for(int i=0;i<taille;i++)
 		{
 			decaleVersBasColonne(i);
+		}
+	}
+	
+	public void supprLigne(int ligne)
+	{
+		for(int i=0;i<taille;i++)
+		{
+			getGrille()[ligne][i].setBonbon(new BonbonOrdinaire(Couleur.VIDE));
+		}
+	}
+	
+	public void supprColonne(int colonne)
+	{
+		for(int i=0;i<taille;i++)
+		{
+			getGrille()[i][colonne].setBonbon(new BonbonOrdinaire(Couleur.VIDE));
 		}
 	}
 	

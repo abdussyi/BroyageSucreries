@@ -6,13 +6,13 @@ import bonbon.Contenant;
 import bonbon.Couleur;
 
 public class Case {
-	//une case contient soit un bonbon, soit rien
+	//une case contient un Contenant
 	
 	private Contenant bonbon;
 	private int ligne;
 	private int colonne;
 	
-	
+	//à mettre dans bonbon
 	public int getBonbonNum()
 	{
 		if(bonbon.estSpecial())

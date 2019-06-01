@@ -40,7 +40,7 @@ public abstract class Combinaison {
     public boolean testDetection(int l, int c,Plateau p) {
         try {
 			if(detection(l,c,p)) {
-				System.out.println(this.getClass());
+				//System.out.println(this.getClass());
 				return true;
 			}
 		} catch (CandyException e) {

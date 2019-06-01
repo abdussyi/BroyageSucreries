@@ -17,13 +17,25 @@ public class CombinaisonTroisH extends Combinaison {
 	private Case deux;
 	private Case trois;
 	private boolean estCombinaison;
+	private boolean estCombiRaye;
 	
+	public boolean estCombiRaye() {
+		return estCombiRaye;
+	}
+
+
+	public void setEstCombiRaye(boolean estCombiRaye) {
+		this.estCombiRaye = estCombiRaye;
+	}
+
+
 	public CombinaisonTroisH()
 	{
 		un = null;
 		deux = null;
 		trois = null;
 		setEstCombinaison(false);
+		setEstCombiRaye(false);
 	}
 	
 	
@@ -82,6 +94,7 @@ public class CombinaisonTroisH extends Combinaison {
 			if( moinsDeux.getBonbon().estMemeCouleur(moinsUn.getBonbon())&&moinsUn.getBonbon().estMemeCouleur(zero.getBonbon()))
 			{
 				setEstCombinaison(true);
+				setEstCombiRaye(verifRaye(moinsDeux,moinsUn,zero));
 				setUn(moinsDeux);
 				setDeux(moinsUn);
 				setTrois(zero);
@@ -94,6 +107,7 @@ public class CombinaisonTroisH extends Combinaison {
 			if( moinsUn.getBonbon().estMemeCouleur(zero.getBonbon())&&zero.getBonbon().estMemeCouleur(un.getBonbon()))
 			{
 				setEstCombinaison(true);
+				setEstCombiRaye(verifRaye(un,moinsUn,zero));
 				setUn(moinsUn);
 				setDeux(zero);
 				setTrois(un);
@@ -105,6 +119,7 @@ public class CombinaisonTroisH extends Combinaison {
 			if( zero.getBonbon().estMemeCouleur(un.getBonbon())&&un.getBonbon().estMemeCouleur(deux.getBonbon()))
 			{
 				setEstCombinaison(true);
+				setEstCombiRaye(verifRaye(un,deux,zero));
 				setUn(zero);
 				setDeux(un);
 				setTrois(deux);
@@ -114,6 +129,18 @@ public class CombinaisonTroisH extends Combinaison {
 		}
 		return estCombinaison();
 		
+	}
+	
+	public boolean verifRaye(Case a,Case b, Case c)
+	{
+		if(a.getBonbon().estSpecial() || b.getBonbon().estSpecial() || c.getBonbon().estSpecial())
+		{
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
     public Case getUn() {
@@ -158,7 +185,12 @@ public class CombinaisonTroisH extends Combinaison {
 
 	@Override
 	public boolean traitementSpecial(int l, int c, Plateau p) {
-		if(estCombinaison()==true)
+		if(estCombinaison()==true && estCombiRaye())
+		{
+			p.supprLigne(un.getLigne());
+			return true;
+		}
+		else if(estCombinaison()==true)
 		{
 			un.setBonbon(new BonbonSpecial(Couleur.VIDE));
 			deux.setBonbon(new BonbonSpecial(Couleur.VIDE));

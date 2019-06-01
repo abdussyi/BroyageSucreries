@@ -1,6 +1,4 @@
-
-
-
+import combinaison.ChainsOfRespDetecteur;
 import exception.CandyException;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -82,6 +80,7 @@ public class CandyCrush extends Application {
 			primaryStage.setTitle("Candy Crush");
 
 			plateau = new Plateau("plateaux/plateau_demo.csv");
+			//plateau.decaleVersBas();
 			initImagesCandies();
 			
 			root = new BorderPane(grillePane);
@@ -113,8 +112,9 @@ public class CandyCrush extends Application {
 	}
 
 	private void demarrerPartie() {
+		
 		dessinerPlateau();
-
+		
 		timeline.play();
 		
 		/**
@@ -390,7 +390,6 @@ public class CandyCrush extends Application {
 
 		private void echangerSourceTarget() {
 			int ls = 0, cs = 0, lt = 0, ct = 0;
-
 			/** coordonnées de la case de départ (s comme source) */
 			ls = yd / 64;
 			cs = xd / 64;
@@ -398,12 +397,29 @@ public class CandyCrush extends Application {
 			/** coordonnées de la case d'arrivée du DnD (t comme target) */
 			lt = yf / 64;
 			ct = xf / 64;
-
+			int taille = plateau.getTaille();
 			/** On échange les deux entiers, c'est tout ce que l'on fait dans la démo */
 			
 			try {
 				plateau.echange(ls, cs, lt, ct);
 				plateau.decaleVersBas();
+				
+				//il faut corriger certains trucs ici
+				for(int ligne = 0;ligne<taille;ligne++)
+				{
+					for(int colonne=0;colonne<taille;colonne++)
+					{
+						ChainsOfRespDetecteur test = new ChainsOfRespDetecteur();
+						if(test.detecteur(ligne, colonne, plateau)==true)
+						{
+							test.traitement(ligne, colonne, plateau);
+							plateau.decaleVersBas();
+						}
+
+					}
+				}
+
+				
 			} catch (CandyException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

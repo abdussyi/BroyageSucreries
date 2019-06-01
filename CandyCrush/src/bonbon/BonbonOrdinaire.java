@@ -16,7 +16,6 @@ public class BonbonOrdinaire implements Contenant{
 		this.couleur = couleur;
 	}
 	
-	//exeption si utilisé avec meringue
 	public Couleur getCouleur() {
 		return couleur;
 	}

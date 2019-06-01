@@ -1,3 +1,4 @@
+import combinaison.ChainsOfRespDetecteur;
 import exception.CandyException;
 import terrain.Plateau;
 
@@ -13,6 +14,11 @@ public class Application {
 		System.out.println("");
 		plateau.decaleVersBas();
 		plateau.afficherGrille();
+		System.out.println("");
+		plateau.echange(3, 4, 3, 5);
+		plateau.decaleVersBas();
+
+
 	}
 	
 	
