@@ -2,6 +2,7 @@ package combinaison;
 
 import bonbon.BonbonSpecial;
 import bonbon.Couleur;
+import bonbon.Vide;
 import exception.CandyException;
 import terrain.Case;
 import terrain.Plateau;
@@ -45,7 +46,7 @@ public class CombinaisonTroisV extends Combinaison {
 		Case moinsDeux,moinsUn,zero,un,deux;
 
 		//verification Verticale
-		if(p.caseEstDansGrille(l-2, c) && !(p.getCaseBonbon(l-2, c).getCouleur()==Couleur.VIDE))
+		if(p.caseEstDansGrille(l-2, c) && !(p.getCaseBonbon(l-2, c).estVide()))
 		{
 			moinsDeux = p.getGrille()[l-2][c];
 		}
@@ -53,7 +54,7 @@ public class CombinaisonTroisV extends Combinaison {
 		{
 			moinsDeux=null;
 		}
-		if(p.caseEstDansGrille(l-1, c) && !(p.getCaseBonbon(l-1, c).getCouleur()==Couleur.VIDE))
+		if(p.caseEstDansGrille(l-1, c) && !(p.getCaseBonbon(l-1, c).estVide()))
 		{
 			moinsUn = p.getGrille()[l-1][c];
 		}
@@ -62,7 +63,7 @@ public class CombinaisonTroisV extends Combinaison {
 			moinsUn = null;
 		}
 		//pas vraiment bseoin de cela
-		if(p.caseEstDansGrille(l, c) && !(p.getCaseBonbon(l, c).getCouleur()==Couleur.VIDE))
+		if(p.caseEstDansGrille(l, c) && !(p.getCaseBonbon(l, c).estVide()))
 		{
 			zero = p.getGrille()[l][c];
 		}
@@ -70,7 +71,7 @@ public class CombinaisonTroisV extends Combinaison {
 		{
 			zero = null;
 		}
-		if(p.caseEstDansGrille(l+1, c) && !(p.getCaseBonbon(l+1, c).getCouleur()==Couleur.VIDE))
+		if(p.caseEstDansGrille(l+1, c) && !(p.getCaseBonbon(l+1, c).estVide()))
 		{
 			un = p.getGrille()[l+1][c];
 		}
@@ -78,7 +79,7 @@ public class CombinaisonTroisV extends Combinaison {
 		{
 			un = null;
 		}
-		if(p.caseEstDansGrille(l+2, c) && !(p.getCaseBonbon(l+2, c).getCouleur()==Couleur.VIDE))
+		if(p.caseEstDansGrille(l+2, c) && !(p.getCaseBonbon(l+2, c).estVide()))
 		{
 			deux = p.getGrille()[l+2][c];
 		}
@@ -190,9 +191,9 @@ public class CombinaisonTroisV extends Combinaison {
 		}
 		else if(estCombinaison()==true)
 		{
-			un.setBonbon(new BonbonSpecial(Couleur.VIDE));
-			deux.setBonbon(new BonbonSpecial(Couleur.VIDE));
-			trois.setBonbon(new BonbonSpecial(Couleur.VIDE));
+			un.setBonbon(new Vide());
+			deux.setBonbon(new Vide());
+			trois.setBonbon(new Vide());
 			return true;
 		}
 		else

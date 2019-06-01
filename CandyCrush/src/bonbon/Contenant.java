@@ -8,4 +8,6 @@ public interface Contenant {
 	public boolean estMemeCouleur(Contenant a);
 	public boolean equals(Object obj);
 	public String AfficherCouleur();
+	public boolean estMeringue();
+	public boolean estVide();
 }

@@ -80,7 +80,7 @@ public class CandyCrush extends Application {
 		try {
 			primaryStage.setTitle("Candy Crush");
 
-			plateau = new Plateau("plateaux/plateau_demo.csv");
+			plateau = new Plateau("plateaux/plateau5.csv");
 			//plateau.decaleVersBas();
 			initImagesCandies();
 			

@@ -4,6 +4,8 @@ import bonbon.BonbonOrdinaire;
 import bonbon.BonbonSpecial;
 import bonbon.Contenant;
 import bonbon.Couleur;
+import bonbon.Meringue;
+import bonbon.Vide;
 
 public class Case {
 	//une case contient un Contenant
@@ -20,10 +22,7 @@ public class Case {
 			switch (bonbon.getCouleur())
 			{
 
-			case VIDE:
-				return 0;	
-			case MERINGUE:
-				return 9;
+	
 			case BLEU:
 				return 5;
 			case VIOLET:
@@ -36,14 +35,19 @@ public class Case {
 				return -1;
 			}
 		}
+		else if(bonbon.estMeringue())
+		{
+			return 9;
+		}
+		if(bonbon.estVide())
+		{
+			return 0;
+		}
 		else
 		{
 			switch (bonbon.getCouleur())
 			{
-			case VIDE:
-				return 0;
-			case MERINGUE:
-				return 9;
+
 			case BLEU:
 				return 1;
 			case VIOLET:
@@ -85,7 +89,7 @@ public class Case {
 	{
 		if(bonbon==0)
 		{
-			this.bonbon=new BonbonOrdinaire(Couleur.VIDE);
+			this.bonbon=new Vide();
 		}
 		if(bonbon==1)
 		{
@@ -121,7 +125,7 @@ public class Case {
 		}
 		if(bonbon==9)
 		{
-			this.bonbon=new BonbonOrdinaire(Couleur.MERINGUE);
+			this.bonbon=new Meringue();
 		}
 		setLigne(ligne);
 		setColonne(colonne);

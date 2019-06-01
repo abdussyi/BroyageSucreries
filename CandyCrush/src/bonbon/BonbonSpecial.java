@@ -25,21 +25,14 @@ public class BonbonSpecial implements Contenant {
 	
 	public String AfficherCouleur()
 	{
-		if(couleur==Couleur.VIDE)
-		{
-			return "  VID  ";
-		}
-		else if(couleur==Couleur.BLEU)
+
+		if(couleur==Couleur.BLEU)
 		{
 			return "BLE_RAY";
 		}
 		else if(couleur==Couleur.JAUNE)
 		{
 			return "JAU_RAY";
-		}
-		else if(couleur==Couleur.MERINGUE)
-		{
-			return "  MER  ";
 		}
 		else if(couleur==Couleur.VERT)
 		{
@@ -59,6 +52,20 @@ public class BonbonSpecial implements Contenant {
 			return true;
 		else
 			return false;
+	}
+
+
+
+	@Override
+	public boolean estMeringue() {
+		return false;
+	}
+
+
+
+	@Override
+	public boolean estVide() {
+		return false;
 	}
 	
 }

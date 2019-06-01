@@ -1,7 +1,6 @@
 package bonbon;
 
 public enum Couleur {
-	BLEU,VIOLET,JAUNE,VERT,MERINGUE,VIDE;
-
+	BLEU,VIOLET,JAUNE,VERT;
 }
 

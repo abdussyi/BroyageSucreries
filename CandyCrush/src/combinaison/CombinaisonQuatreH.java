@@ -2,6 +2,7 @@ package combinaison;
 
 import bonbon.BonbonSpecial;
 import bonbon.Couleur;
+import bonbon.Vide;
 import exception.CandyException;
 import terrain.Case;
 import terrain.Plateau;
@@ -41,7 +42,7 @@ public class CombinaisonQuatreH extends Combinaison{
 		Case moinsTrois,moinsDeux,moinsUn,zero,un,deux,trois;
 		
 		//verification Verticale
-		if(p.caseEstDansGrille(l, c-3) && !(p.getCaseBonbon(l, c-3).getCouleur()==Couleur.VIDE))
+		if(p.caseEstDansGrille(l, c-3) && !(p.getCaseBonbon(l, c-3).estVide()))
 		{
 			moinsTrois = p.getGrille()[l][c-3];
 		}
@@ -49,7 +50,7 @@ public class CombinaisonQuatreH extends Combinaison{
 		{
 			moinsTrois=null;
 		}
-		if(p.caseEstDansGrille(l, c-2) && !(p.getCaseBonbon(l, c-2).getCouleur()==Couleur.VIDE))
+		if(p.caseEstDansGrille(l, c-2) && !(p.getCaseBonbon(l, c-2).estVide()))
 		{
 			moinsDeux = p.getGrille()[l][c-2];
 		}
@@ -57,7 +58,7 @@ public class CombinaisonQuatreH extends Combinaison{
 		{
 			moinsDeux=null;
 		}
-		if(p.caseEstDansGrille(l, c-1) && !(p.getCaseBonbon(l, c-1).getCouleur()==Couleur.VIDE))
+		if(p.caseEstDansGrille(l, c-1) && !(p.getCaseBonbon(l, c-1).estVide()))
 		{
 			moinsUn = p.getGrille()[l][c-1];
 		}
@@ -66,7 +67,7 @@ public class CombinaisonQuatreH extends Combinaison{
 			moinsUn = null;
 		}
 		//pas vraiment bseoin de cela
-		if(p.caseEstDansGrille(l, c) && !(p.getCaseBonbon(l, c).getCouleur()==Couleur.VIDE))
+		if(p.caseEstDansGrille(l, c) && !(p.getCaseBonbon(l, c).estVide()))
 		{
 			zero = p.getGrille()[l][c];
 		}
@@ -74,7 +75,7 @@ public class CombinaisonQuatreH extends Combinaison{
 		{
 			zero = null;
 		}
-		if(p.caseEstDansGrille(l, c+1) && !(p.getCaseBonbon(l, c+1).getCouleur()==Couleur.VIDE))
+		if(p.caseEstDansGrille(l, c+1) && !(p.getCaseBonbon(l, c+1).estVide()))
 		{
 			un = p.getGrille()[l][c+1];
 		}
@@ -82,7 +83,7 @@ public class CombinaisonQuatreH extends Combinaison{
 		{
 			un = null;
 		}
-		if(p.caseEstDansGrille(l, c+2) && !(p.getCaseBonbon(l, c+2).getCouleur()==Couleur.VIDE))
+		if(p.caseEstDansGrille(l, c+2) && !(p.getCaseBonbon(l, c+2).estVide()))
 		{
 			deux = p.getGrille()[l][c+2];
 		}
@@ -90,7 +91,7 @@ public class CombinaisonQuatreH extends Combinaison{
 		{
 			deux = null;
 		}
-		if(p.caseEstDansGrille(l, c+3) && !(p.getCaseBonbon(l, c+3).getCouleur()==Couleur.VIDE))
+		if(p.caseEstDansGrille(l, c+3) && !(p.getCaseBonbon(l, c+3).estVide()))
 		{
 			trois = p.getGrille()[l][c+3];
 		}
@@ -236,10 +237,10 @@ public class CombinaisonQuatreH extends Combinaison{
 		}
 		else if(estCombinaison()==true)
 		{
-			un.setBonbon(new BonbonSpecial(Couleur.VIDE));
-			deux.setBonbon(new BonbonSpecial(Couleur.VIDE));
-			trois.setBonbon(new BonbonSpecial(Couleur.VIDE));
-			quatre.setBonbon(new BonbonSpecial(Couleur.VIDE));
+			un.setBonbon(new Vide());
+			deux.setBonbon(new Vide());
+			trois.setBonbon(new Vide());
+			quatre.setBonbon(new Vide());
 			return true;
 		}
 		else

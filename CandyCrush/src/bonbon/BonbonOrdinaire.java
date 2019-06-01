@@ -27,21 +27,14 @@ public class BonbonOrdinaire implements Contenant{
 
 	public String AfficherCouleur()
 	{
-		if(couleur==Couleur.VIDE)
-		{
-			return "  VID  ";
-		}
-		else if(couleur==Couleur.BLEU)
+
+		if(couleur==Couleur.BLEU)
 		{
 			return "  BLE  ";
 		}
 		else if(couleur==Couleur.JAUNE)
 		{
 			return "  JAU  ";
-		}
-		else if(couleur==Couleur.MERINGUE)
-		{
-			return "  MER  ";
 		}
 		else if(couleur==Couleur.VERT)
 		{
@@ -91,6 +84,16 @@ public class BonbonOrdinaire implements Contenant{
 		if (estSpecial != other.estSpecial)
 			return false;
 		return true;
+	}
+
+	@Override
+	public boolean estMeringue() {
+		return false;
+	}
+
+	@Override
+	public boolean estVide() {
+		return false;
 	}
 
 	

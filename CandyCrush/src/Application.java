@@ -9,13 +9,12 @@ public class Application {
 		
 //		Verifications verif = new Verifications();
 //		verif.test();
-		Plateau plateau = new Plateau("plateaux/plateau_demo.csv");
+		Plateau plateau = new Plateau("plateaux/plateau5.csv");
 		plateau.afficherGrille();
 		System.out.println("");
-		plateau.decaleVersBas();
-		plateau.afficherGrille();
 		System.out.println("");
-		plateau.echange(3, 4, 3, 5);
+		plateau.echange(2, 8, 3, 8);
+		plateau.afficherGrille();
 		plateau.decaleVersBas();
 
 

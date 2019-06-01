@@ -2,6 +2,7 @@ package combinaison;
 
 import bonbon.BonbonSpecial;
 import bonbon.Couleur;
+import bonbon.Vide;
 import exception.CandyException;
 import terrain.Case;
 import terrain.Plateau;
@@ -48,7 +49,7 @@ public class CombinaisonTroisH extends Combinaison {
 		Case moinsDeux,moinsUn,zero,un,deux;
 
 		//verification horizontale
-		if(p.caseEstDansGrille(l, c-2) && !(p.getCaseBonbon(l, c-2).getCouleur()==Couleur.VIDE))
+		if(p.caseEstDansGrille(l, c-2) && !(p.getCaseBonbon(l, c-2).estVide()))
 		{
 			moinsDeux = p.getGrille()[l][c-2];
 		}
@@ -56,7 +57,7 @@ public class CombinaisonTroisH extends Combinaison {
 		{
 			moinsDeux=null;
 		}
-		if(p.caseEstDansGrille(l, c-1) && !(p.getCaseBonbon(l, c-1).getCouleur()==Couleur.VIDE))
+		if(p.caseEstDansGrille(l, c-1) && !(p.getCaseBonbon(l, c-1).estVide()))
 		{
 			moinsUn = p.getGrille()[l][c-1];
 		}
@@ -64,7 +65,7 @@ public class CombinaisonTroisH extends Combinaison {
 		{
 			moinsUn = null;
 		}
-		if(p.caseEstDansGrille(l, c) && !(p.getCaseBonbon(l, c).getCouleur()==Couleur.VIDE))
+		if(p.caseEstDansGrille(l, c) && !(p.getCaseBonbon(l, c).estVide()))
 		{
 			zero = p.getGrille()[l][c];
 		}
@@ -72,7 +73,7 @@ public class CombinaisonTroisH extends Combinaison {
 		{
 			zero = null;
 		}
-		if(p.caseEstDansGrille(l, c+1) && !(p.getCaseBonbon(l, c+1).getCouleur()==Couleur.VIDE))
+		if(p.caseEstDansGrille(l, c+1) && !(p.getCaseBonbon(l, c+1).estVide()))
 		{
 			un = p.getGrille()[l][c+1];
 		}
@@ -80,7 +81,7 @@ public class CombinaisonTroisH extends Combinaison {
 		{
 			un = null;
 		}
-		if(p.caseEstDansGrille(l, c+2) && !(p.getCaseBonbon(l, c+2).getCouleur()==Couleur.VIDE))
+		if(p.caseEstDansGrille(l, c+2) && !(p.getCaseBonbon(l, c+2).estVide()))
 		{
 			deux = p.getGrille()[l][c+2];
 		}
@@ -192,9 +193,9 @@ public class CombinaisonTroisH extends Combinaison {
 		}
 		else if(estCombinaison()==true)
 		{
-			un.setBonbon(new BonbonSpecial(Couleur.VIDE));
-			deux.setBonbon(new BonbonSpecial(Couleur.VIDE));
-			trois.setBonbon(new BonbonSpecial(Couleur.VIDE));
+			un.setBonbon(new Vide());
+			deux.setBonbon(new Vide());
+			trois.setBonbon(new Vide());
 			return true;
 		}
 		else

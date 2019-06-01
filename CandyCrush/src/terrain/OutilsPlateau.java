@@ -1,5 +1,8 @@
 package terrain;
 
+import bonbon.BonbonOrdinaire;
+import bonbon.Contenant;
+import bonbon.Couleur;
 import combinaison.ChainsOfRespDetecteur;
 
 public class OutilsPlateau{
@@ -12,10 +15,39 @@ public class OutilsPlateau{
 	public OutilsPlateau() {
 	}
 
-
-
+	/*
+	public Contenant getAleaContenant()
+	{	
+		
+		//deja, nous allons prendre une couleurs aleatoirement
+		
+		
+		double rand =Math.random();
+		
+		if(rand<=0.03)
+		{
+			return new BonbonOrdinaire(Couleur.MERINGUE);
+		}
+		//0.12125 chacun des bonbon
+		else if(rand>0.03 && rand<=0.03)
+		{
+			
+		}
+		
+	}
+	
+	
+	public void rempliAleaGrille(Plateau p)
+	{
+		
+	}
+	
+	*/
+	
+	
 	public void traitementPlateauAll(Plateau p)
 	{
+		//ajouter le remplissage auto apres traitement
 		boolean continuerRecherche=true;
 		while(continuerRecherche==true)
 		{

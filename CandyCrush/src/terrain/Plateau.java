@@ -9,6 +9,7 @@ import java.util.Arrays;
 import bonbon.BonbonOrdinaire;
 import bonbon.Contenant;
 import bonbon.Couleur;
+import bonbon.Vide;
 import combinaison.ChainsOfRespDetecteur;
 import combinaison.Combinaison;
 import exception.CandyException;
@@ -147,7 +148,7 @@ public class Plateau {
 	public void echange(int ligne, int colonne,int ligne2,int colonne2) throws CandyException
 	{
 		ChainsOfRespDetecteur test = new ChainsOfRespDetecteur();
-		if(getCaseBonbon(ligne, colonne).getCouleur()==Couleur.MERINGUE || getCaseBonbon(ligne2, colonne2).getCouleur()==Couleur.MERINGUE)
+		if(getCaseBonbon(ligne, colonne).estMeringue() || getCaseBonbon(ligne2, colonne2).estMeringue())
 		{
 			throw new CandyException("Echange impossible avec une meringue");
 		}
@@ -247,7 +248,7 @@ public class Plateau {
 	//cette fonction decale vers le bas un ensemble de bonbon, c'est utile pour decaleVersBasColonne
 	public void decaleEnsembleColonne(int colonne, int ligneArrive) throws IllegalArgumentException
 	{
-		if(grille[ligneArrive][colonne].getBonbon().getCouleur()!=Couleur.VIDE)
+		if(!(grille[ligneArrive][colonne].getBonbon().estVide()))
 		{
 			throw new IllegalArgumentException("erreur parametre, la case vers laquelle vous voulez decaler les bonbons doit etre vide");
 		}
@@ -255,7 +256,7 @@ public class Plateau {
 		{
 			echange_aux(i,colonne,i-1,colonne);
 		}
-		grille[0][colonne].setBonbon(new BonbonOrdinaire(Couleur.VIDE));
+		grille[0][colonne].setBonbon(new Vide());
 	}
 	
 	/*
@@ -265,7 +266,7 @@ public class Plateau {
 	{
 		for(int i = 0 ;i<taille-1;i++)
 		{
-			if(grille[i+1][colonne].getBonbon().getCouleur()==Couleur.VIDE)
+			if(grille[i+1][colonne].getBonbon().estVide())
 			{
 				decaleEnsembleColonne(colonne,i+1);
 			}
@@ -287,7 +288,7 @@ public class Plateau {
 	{
 		for(int i=0;i<taille;i++)
 		{
-			getGrille()[ligne][i].setBonbon(new BonbonOrdinaire(Couleur.VIDE));
+			getGrille()[ligne][i].setBonbon(new Vide());
 		}
 	}
 	
@@ -295,7 +296,7 @@ public class Plateau {
 	{
 		for(int i=0;i<taille;i++)
 		{
-			getGrille()[i][colonne].setBonbon(new BonbonOrdinaire(Couleur.VIDE));
+			getGrille()[i][colonne].setBonbon(new Vide());
 		}
 	}
 	
