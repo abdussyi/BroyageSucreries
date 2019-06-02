@@ -1,5 +1,10 @@
 package terrain;
 
+import bonbon.BonbonOrdinaire;
+import bonbon.BonbonSpecial;
+import bonbon.Contenant;
+import bonbon.Couleur;
+import bonbon.Meringue;
 import combinaison.ChainsOfRespDetecteur;
 
 public class OutilsPlateau{
@@ -12,34 +17,67 @@ public class OutilsPlateau{
 	public OutilsPlateau() {
 	}
 
-	/*
+	
+	
+	
+	public Couleur getAleaCouleur()
+	{
+		double randCouleur = Math.random();
+		if(randCouleur<=0.25)
+		{
+			return Couleur.BLEU;
+		}
+		else if(randCouleur>0.25 && randCouleur<=0.5)
+		{
+			return Couleur.JAUNE;
+		}
+		else if(randCouleur>0.5 && randCouleur<=0.75)
+		{
+			return Couleur.VERT;
+		}
+		else
+		{
+			return Couleur.VIOLET;
+		}
+	}
+	
 	public Contenant getAleaContenant()
 	{	
 		
 		//deja, nous allons prendre une couleurs aleatoirement
 		
 		
-		double rand =Math.random();
+		double randBonbonType = Math.random();
 		
-		if(rand<=0.03)
+		if(randBonbonType<=0.03)
 		{
-			return new BonbonOrdinaire(Couleur.MERINGUE);
+			return new Meringue();
 		}
-		//0.12125 chacun des bonbon
-		else if(rand>0.03 && rand<=0.03)
+		else if(randBonbonType>0.03 && randBonbonType<=0.75)
 		{
-			
+			return new BonbonOrdinaire(getAleaCouleur());
 		}
+		else
+			return new BonbonSpecial(getAleaCouleur());
 		
 	}
 	
 	
 	public void rempliAleaGrille(Plateau p)
 	{
-		
+		int taille = p.getTaille();
+		for(int ligne = 0;ligne<taille;ligne++)
+		{
+			for(int colonne = 0;colonne<taille;colonne++)
+			{
+				if(p.getGrille()[ligne][colonne].getBonbon().estVide()==true)
+				{
+					p.getGrille()[ligne][colonne].setBonbon(getAleaContenant());
+				}
+			}
+		}
 	}
 	
-	*/
 	
 	
 	public void traitementPlateauAll(Plateau p)
@@ -48,7 +86,8 @@ public class OutilsPlateau{
 		boolean continuerRecherche=true;
 		while(continuerRecherche==true)
 		{
-			continuerRecherche=traitementPlateauAll(0,0,p);
+			continuerRecherche=traitementPlateau(0,0,p);
+			rempliAleaGrille(p);
 		}
 	}
 	
@@ -59,7 +98,8 @@ public class OutilsPlateau{
 	// traitement recursif, qui permet de traiter entierement le tableau apres un echange
 	// mais en meme permet de savoir s'il y a eu au moins un traitement dans la grille
 	// dans le cas ou il y a eu un traitement, la grille doit re-etre explorer sinon pas la peine
-	public boolean traitementPlateauAll(int ligne, int colonne,Plateau p)
+	// en somme cette fonction parcours le tableau et effectue un traitement s'il y en a un
+	public boolean traitementPlateau(int ligne, int colonne,Plateau p)
 	{
 		if(ligne==9 && colonne==9)
 		{
@@ -93,12 +133,12 @@ public class OutilsPlateau{
 				{
 					//ancienne versions
 					//return (false || traitementPlateauAll(ligne+1,1,p));
-					return traitementPlateauAll(ligne+1,1,p);
+					return traitementPlateau(ligne+1,1,p);
 				}
 				else
 					//ancienne versions
 					//return (false || traitementPlateauAll(ligne,colonne+1,p));
-					return traitementPlateauAll(ligne,colonne+1,p);
+					return traitementPlateau(ligne,colonne+1,p);
 		}
 	}
 

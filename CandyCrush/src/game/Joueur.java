@@ -3,10 +3,31 @@ package game;
 public class Joueur {
 	private String nom;
 	private int score;
+	private int nbDeplacement;
 	
 	
 	
+	public Joueur(String nom)
+	{
+		this.nom=nom;
+		this.score=0;
+		this.nbDeplacement=0;
+	}
 	
+	
+	
+	public int getNbDeplacement() {
+		return nbDeplacement;
+	}
+
+
+
+	public void setNbDeplacement(int nbDeplacement) {
+		this.nbDeplacement = nbDeplacement;
+	}
+
+
+
 	public String getNom() {
 		return nom;
 	}

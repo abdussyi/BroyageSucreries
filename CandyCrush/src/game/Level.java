@@ -12,19 +12,17 @@ public class Level {
 	private int nbDeplacement;
 	private int scoreMax;
 	private int temps;
-	
-	private String nomJoueur;
 	private String ObjectifPricipale;
 	
 	
 	
 	//load depuis un fichier
-	public Level(String repertoire, String nomJoueur) throws IOException
+	public Level(String repertoire) throws IOException
 	{
 		setNbDeplacement(0);
 		setScoreMax(0);
 		setTemps(0);
-		setNomJoueur(nomJoueur);
+		setObjectifs("");
 		loadTypePartie(repertoire);
 	}
 	
@@ -34,7 +32,6 @@ public class Level {
 		this.nbDeplacement = nbDeplacement;
 		this.scoreMax = scoreMax;
 		this.temps = temps;
-		this.nomJoueur = nomJoueur;
 		ObjectifPricipale = objectifPricipale;
 	}
 
@@ -113,13 +110,6 @@ public class Level {
 		this.temps = temps;
 	}
 
-	public String getNomJoueur() {
-		return nomJoueur;
-	}
-
-	public void setNomJoueur(String nomJoueur) {
-		this.nomJoueur = nomJoueur;
-	}
 
 	public String getObjectifs() {
 		return ObjectifPricipale;
@@ -131,21 +121,10 @@ public class Level {
 
 	@Override
 	public String toString() {
-		return "Level [nbDeplacement=" + nbDeplacement + ", scoreMax=" + scoreMax + ", temps=" + temps + ", nomJoueur="
-				+ nomJoueur + ", ObjectifPricipale=" + ObjectifPricipale + "]";
+		return "Level [nbDeplacement=" + nbDeplacement + ", scoreMax=" + scoreMax + ", temps=" + temps
+				 + ", ObjectifPricipale=" + ObjectifPricipale + "]";
 	}
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((ObjectifPricipale == null) ? 0 : ObjectifPricipale.hashCode());
-		result = prime * result + nbDeplacement;
-		result = prime * result + ((nomJoueur == null) ? 0 : nomJoueur.hashCode());
-		result = prime * result + scoreMax;
-		result = prime * result + temps;
-		return result;
-	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -163,11 +142,7 @@ public class Level {
 			return false;
 		if (nbDeplacement != other.nbDeplacement)
 			return false;
-		if (nomJoueur == null) {
-			if (other.nomJoueur != null)
-				return false;
-		} else if (!nomJoueur.equals(other.nomJoueur))
-			return false;
+
 		if (scoreMax != other.scoreMax)
 			return false;
 		if (temps != other.temps)

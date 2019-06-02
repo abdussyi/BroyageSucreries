@@ -79,7 +79,6 @@ public class CandyCrush extends Application {
 			primaryStage.setTitle("Candy Crush");
 
 			plateau = new Plateau("plateaux/plateau5.csv");
-			//plateau.decaleVersBas();
 			initImagesCandies();
 			
 			root = new BorderPane(grillePane);
@@ -202,6 +201,8 @@ public class CandyCrush extends Application {
 		public void handle(ActionEvent event) {
 
 			gc.clearRect(0, 0, 640, 640);
+
+			
 			// Dans cette frame, on est sensé voir des étoiles qui matérialisent la prochaine
 			// disparition des bonbons (etoile = case vide)
 
@@ -220,7 +221,7 @@ public class CandyCrush extends Application {
 
 	private final class DragDetectedEvent implements EventHandler<MouseEvent> {
 
-		private DragDetectedEvent() {
+		private DragDetectedEvent(){
 		}
 
 		/**
@@ -292,7 +293,6 @@ public class CandyCrush extends Application {
 			/** coordonnées de la case d'arrivée du DnD (t comme target) */
 			lt = yf / 64;
 			ct = xf / 64;
-			int taille = plateau.getTaille();
 			/** On échange les deux entiers, c'est tout ce que l'on fait dans la démo */
 			
 			try {
@@ -302,22 +302,11 @@ public class CandyCrush extends Application {
 				//il fauudrait une fonction qui teste toutes les cases modifié
 				//arretez de cherchez si aucune combinaison a ete trouvé sur toute la grille
 				//cette boucle parcours tout le tableau et recherche des combi
-//				for(int ligne = 0;ligne<taille;ligne++)
-//				{
-//					for(int colonne=0;colonne<taille;colonne++)
-//					{
-//						ChainsOfRespDetecteur test = new ChainsOfRespDetecteur();
-//						if(test.detecteur(ligne, colonne, plateau)==true)
-//						{
-//							test.traitement(ligne, colonne, plateau);
-//							plateau.decaleVersBas();
-//						}
-//
-//					}
-//				}
+
 				OutilsPlateau outils = new OutilsPlateau();
 				outils.traitementPlateauAll(plateau);
 
+				
 				
 			} catch (CandyException e) {
 				// TODO Auto-generated catch block
