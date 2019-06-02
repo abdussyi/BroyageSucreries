@@ -19,7 +19,8 @@ public class BonbonSpecial implements Contenant {
 		this.couleur = couleur;
 	}
 
-	public Couleur getCouleur() {
+	public Couleur getCouleur()
+	{
 		return couleur;
 	}
 	
