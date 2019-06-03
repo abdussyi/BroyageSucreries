@@ -37,7 +37,7 @@ public class BonbonOrdinaire implements Contenant{
 
 	/*
 	 * retourne si le bonbon est special
-	 * @return false comme le bonbon n'est pas un bonbon rayé
+	 * @return false comme le bonbon n'est pas un bonbon rayï¿½
 	 */
 	public boolean estSpecial() {
 		return estSpecial;

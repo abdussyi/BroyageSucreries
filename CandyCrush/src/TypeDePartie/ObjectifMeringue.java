@@ -2,13 +2,13 @@ package TypeDePartie;
 
 import terrain.Plateau;
 
-public class ObjectifsMeringue implements Objectif{
+public class ObjectifMeringue implements Objectif{
 	
 	
 	
 	private Plateau plateau;
 	
-	public ObjectifsMeringue(Plateau plateau)
+	public ObjectifMeringue(Plateau plateau)
 	{
 		this.plateau=plateau;
 	}

@@ -47,9 +47,9 @@ public class OutilsPlateau{
 		
 		//deja, nous allons prendre une couleurs aleatoirement
 		
-		
-		double randBonbonType = Math.random();
-		
+	
+		//double randBonbonType = Math.random();
+		/*
 		if(randBonbonType<=0.03)
 		{
 			return new Meringue();
@@ -60,6 +60,8 @@ public class OutilsPlateau{
 		}
 		//else
 			//return new BonbonSpecial(getAleaCouleur());
+		*/
+			return new BonbonOrdinaire(getAleaCouleur());
 		
 	}
 	

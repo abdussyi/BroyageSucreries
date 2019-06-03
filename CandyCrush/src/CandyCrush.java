@@ -1,5 +1,7 @@
 import java.util.Optional;
 
+import TypeDePartie.Partie;
+import TypeDePartie.RestrictionTemps;
 import exception.CandyException;
 import game.Joueur;
 import javafx.animation.Animation;
@@ -78,6 +80,8 @@ public class CandyCrush extends Application {
 	private Joueur joueur;
 	private Label score;
 	private Label nbCoup;
+	Partie partie;
+	int minute,seconde;
 	/**
 	 * Tableau 2D d'entiers. Chaque entier correspond à l'indice d'une image (0-->Candy_0, 1-->Candy_1,...)
 	 * Faudra faire mieux évidemment dans le projet...
@@ -89,10 +93,11 @@ public class CandyCrush extends Application {
 		try {
 			primaryStage.setTitle("Candy Crush");
 
-			plateau = new Plateau("plateaux/plateau3.csv");
+			plateau = new Plateau("plateaux/plateau4.csv");
 			joueur = new Joueur("Samet");
 			score = new Label();
 			nbCoup = new Label();
+			partie = new Partie(joueur,lChrono,plateau,"plateaux/plateau4.csv");
 			initImagesCandies();
 			
 			root = new BorderPane(grillePane);
@@ -168,11 +173,18 @@ public class CandyCrush extends Application {
 			}
 
 			private void mettreAJourTemps() {
-				int s, m;
 
-				m = secondesEcoulees / 60;
-				s = secondesEcoulees % 60;
-				lChrono.setText(""+m+"m "+s+"s");
+
+				minute = secondesEcoulees / 60;
+				seconde = secondesEcoulees % 60;
+				if(partie.getRestriction()!=null && partie.getRestriction().estRestrictionTemps())
+				{
+					RestrictionTemps temp = (RestrictionTemps) partie.getRestriction();
+					temp.setSeconde(seconde);
+					temp.setMinute(minute);
+				}
+				lChrono.setText(""+minute+"m "+seconde+"s");
+				
 			}
 		});
 
@@ -325,6 +337,15 @@ public class CandyCrush extends Application {
 				outils.traitementPlateauAll(plateau,joueur);
 				score.setText("  Votre score est : "+joueur.getScore());
 				
+				
+				if(partie.getObjectif().objectifAtteint())
+				{
+					fenetreFinJeu();
+				}
+				else if(partie.getRestriction().restrictionsAtteinte())
+				{
+					fenetreFinJeu();
+				}
 
 				
 				

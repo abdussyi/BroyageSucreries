@@ -6,7 +6,7 @@ public class RestrictionDeplacement implements Restriction {
 	private int deplacementLimite;
 	private Joueur joueur;
 	
-	public RestrictionDeplacement(int deplacementLimite,int tempsLimite,Joueur joueur)
+	public RestrictionDeplacement(int deplacementLimite,Joueur joueur)
 	{
 		this.deplacementLimite=deplacementLimite;
 		this.joueur=joueur;

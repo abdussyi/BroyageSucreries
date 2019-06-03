@@ -6,20 +6,36 @@ import javafx.scene.control.Label;
 public class RestrictionTemps implements Restriction{
 	private int tempsLimite;//en seconde
 	private Label lChrono;
+	private int minute;
+	private int seconde;
 	
-	
-	public RestrictionTemps(int deplacementLimite,int tempsLimite,Joueur joueur,Label lChrono)
+	public int getMinute() {
+		return minute;
+	}
+
+	public void setMinute(int minute) {
+		this.minute = minute;
+	}
+
+	public int getSeconde() {
+		return seconde;
+	}
+
+	public void setSeconde(int seconde) {
+		this.seconde = seconde;
+	}
+
+	public RestrictionTemps(int tempsLimite,Joueur joueur,Label lChrono)
 	{
 		this.tempsLimite=tempsLimite;
 		this.lChrono=lChrono;
+		this.seconde=0;
+		this.minute=0;
 	}
 	
 	public int currentTime()
 	{
-		String temps = this.lChrono.getText();
-		char[] tabChar = temps.toCharArray();
-		int minute = tabChar[0];
-		int seconde = tabChar[4];
+
 		return minute*60+seconde;
 	}
 	
