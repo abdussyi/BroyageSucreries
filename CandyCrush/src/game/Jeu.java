@@ -29,9 +29,9 @@ public class Jeu {
 		while(finPartie==false)
 		{
 			//echanger bonbon
-			plateau.echange(0, 0, 0, 1);
+			plateau.echange(0, 0, 0, 1,this.joueur);
 			OutilsPlateau outil = new OutilsPlateau();
-			outil.traitementPlateauAll(plateau);
+			outil.traitementPlateauAll(plateau,this.joueur);
 		}
 	}
 	

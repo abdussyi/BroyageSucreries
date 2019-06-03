@@ -2,6 +2,7 @@ package combinaison;
 
 import bonbon.Vide;
 import exception.CandyException;
+import game.Joueur;
 import terrain.Case;
 import terrain.Plateau;
 
@@ -203,6 +204,15 @@ public class CombinaisonTroisV extends Combinaison {
 		}
 		else
 			return false;
+	}
+	
+	@Override
+	public int gainPoints() {
+		if(estCombiRaye())
+		{
+			return 120;
+		}
+		return 30;
 	}
 
 }

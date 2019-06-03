@@ -1,6 +1,7 @@
 package combinaison;
 
 import exception.CandyException;
+import game.Joueur;
 import terrain.Plateau;
 
 /**
@@ -25,14 +26,15 @@ public abstract class Combinaison {
      * @param pNombre
      * @return Si l'opération a été gérée.
      */
-    public boolean TraitementCombi(int l, int c,Plateau p) {
-    	//On devrait peut etre enlever le if, et traiter le suivant dans tous les cas
-        if(traitementSpecial(l,c,p)) {
+    public boolean TraitementCombi(int l, int c,Plateau p,Joueur joueur) {
+
+    	if(traitementSpecial(l,c,p)) {
+    		joueur.addScore(gainPoints());
         	return true;
         };
         
         if(suivant != null) {
-            return suivant.TraitementCombi(l,c,p);
+            return suivant.TraitementCombi(l,c,p,joueur);
         }
         return false;
     }
@@ -63,4 +65,5 @@ public abstract class Combinaison {
     //La fonction traitementSpecial verifie d'abord s'il y a une combinaison, si oui effectue le traitement
     public abstract boolean traitementSpecial(int l, int c,Plateau p);
     public abstract boolean detection(int l, int c, Plateau p) throws CandyException;
+    public abstract int gainPoints();
 }

@@ -1,4 +1,5 @@
 import exception.CandyException;
+import game.Joueur;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -67,6 +68,8 @@ public class CandyCrush extends Application {
 	private	int secondesEcoulees = 0;
 	private Timeline timelineChrono;
 	private Plateau plateau;
+	private Joueur joueur;
+	private Label score;
 	/**
 	 * Tableau 2D d'entiers. Chaque entier correspond à l'indice d'une image (0-->Candy_0, 1-->Candy_1,...)
 	 * Faudra faire mieux évidemment dans le projet...
@@ -79,6 +82,8 @@ public class CandyCrush extends Application {
 			primaryStage.setTitle("Candy Crush");
 
 			plateau = new Plateau("plateaux/plateau5.csv");
+			joueur = new Joueur("Samet");
+			score = new Label();
 			initImagesCandies();
 			
 			root = new BorderPane(grillePane);
@@ -105,6 +110,8 @@ public class CandyCrush extends Application {
 		HBox hbox = new HBox();
 		lChrono = new Label();
 		hbox.getChildren().add(lChrono);
+		hbox.getChildren().add(score);
+		
 		((BorderPane)root).setBottom(hbox);
 		
 	}
@@ -201,8 +208,9 @@ public class CandyCrush extends Application {
 		public void handle(ActionEvent event) {
 
 			gc.clearRect(0, 0, 640, 640);
-
 			
+			
+
 			// Dans cette frame, on est sensé voir des étoiles qui matérialisent la prochaine
 			// disparition des bonbons (etoile = case vide)
 
@@ -296,15 +304,16 @@ public class CandyCrush extends Application {
 			/** On échange les deux entiers, c'est tout ce que l'on fait dans la démo */
 			
 			try {
-				plateau.echange(ls, cs, lt, ct);
-				plateau.decaleVersBas();
-				
+				plateau.echange(ls, cs, lt, ct,joueur);
+				score.setText("Votre score est : "+joueur.getScore());
 				//il fauudrait une fonction qui teste toutes les cases modifié
 				//arretez de cherchez si aucune combinaison a ete trouvé sur toute la grille
 				//cette boucle parcours tout le tableau et recherche des combi
 
 				OutilsPlateau outils = new OutilsPlateau();
-				outils.traitementPlateauAll(plateau);
+				outils.traitementPlateauAll(plateau,joueur);
+				score.setText("  Votre score est : "+joueur.getScore());
+
 
 				
 				

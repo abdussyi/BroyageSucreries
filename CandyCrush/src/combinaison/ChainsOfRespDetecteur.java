@@ -1,5 +1,6 @@
 package combinaison;
 
+import game.Joueur;
 import terrain.Plateau;
 
 public class ChainsOfRespDetecteur {
@@ -26,13 +27,13 @@ public class ChainsOfRespDetecteur {
         troisH.setSuivant(troisV);
         return quatreH.testDetection(ligne,colonne, p);
     }
-    public boolean traitement(int ligne, int colonne, Plateau p)
+    public boolean traitement(int ligne, int colonne, Plateau p,Joueur joueur)
     {
     	// Définition de l'enchainement des maillons
     	quatreH.setSuivant(quatreV);
         quatreV.setSuivant(troisH);
         troisH.setSuivant(troisV);
-        return quatreH.TraitementCombi(ligne,colonne, p);
+        return quatreH.TraitementCombi(ligne,colonne, p,joueur);
     }
     
 }

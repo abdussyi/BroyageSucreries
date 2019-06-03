@@ -6,6 +6,7 @@ import bonbon.Contenant;
 import bonbon.Couleur;
 import bonbon.Meringue;
 import combinaison.ChainsOfRespDetecteur;
+import game.Joueur;
 
 public class OutilsPlateau{
 	
@@ -80,13 +81,13 @@ public class OutilsPlateau{
 	
 	
 	
-	public void traitementPlateauAll(Plateau p)
+	public void traitementPlateauAll(Plateau p,Joueur joueur)
 	{
 		//ajouter le remplissage auto apres traitement
 		boolean continuerRecherche=true;
 		while(continuerRecherche==true)
 		{
-			continuerRecherche=traitementPlateau(0,0,p);
+			continuerRecherche=traitementPlateau(0,0,p,joueur);
 			rempliAleaGrille(p);
 		}
 	}
@@ -99,15 +100,15 @@ public class OutilsPlateau{
 	// mais en meme permet de savoir s'il y a eu au moins un traitement dans la grille
 	// dans le cas ou il y a eu un traitement, la grille doit re-etre explorer sinon pas la peine
 	// en somme cette fonction parcours le tableau et effectue un traitement s'il y en a un
-	public boolean traitementPlateau(int ligne, int colonne,Plateau p)
+	public boolean traitementPlateau(int ligne, int colonne,Plateau p,Joueur joueur)
 	{
 		if(ligne==9 && colonne==9)
 		{
 			ChainsOfRespDetecteur chaine = new ChainsOfRespDetecteur();
 			if(chaine.detecteur(ligne, colonne, p)==true)
 			{
-				chaine.traitement(ligne, colonne, p);
-				p.decaleVersBas();
+				chaine.traitement(ligne, colonne, p,joueur);
+				p.chute();
 				return true;
 			}
 			else
@@ -118,8 +119,8 @@ public class OutilsPlateau{
 			ChainsOfRespDetecteur test = new ChainsOfRespDetecteur();
 			if(test.detecteur(ligne, colonne, p)==true)
 			{
-				test.traitement(ligne, colonne, p);
-				p.decaleVersBas();
+				test.traitement(ligne, colonne, p,joueur);
+				p.chute();
 				//ici la fonction retourne true et on recommance a verifier a partir du debut de la grille
 				if(colonne==9)
 				{
@@ -133,12 +134,12 @@ public class OutilsPlateau{
 				{
 					//ancienne versions
 					//return (false || traitementPlateauAll(ligne+1,1,p));
-					return traitementPlateau(ligne+1,1,p);
+					return traitementPlateau(ligne+1,1,p,joueur);
 				}
 				else
 					//ancienne versions
 					//return (false || traitementPlateauAll(ligne,colonne+1,p));
-					return traitementPlateau(ligne,colonne+1,p);
+					return traitementPlateau(ligne,colonne+1,p,joueur);
 		}
 	}
 

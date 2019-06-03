@@ -11,6 +11,7 @@ import bonbon.Contenant;
 import bonbon.Vide;
 import combinaison.ChainsOfRespDetecteur;
 import exception.CandyException;
+import game.Joueur;
 
 
 public class Plateau {
@@ -144,7 +145,7 @@ public class Plateau {
 	 * - les deux cases ne sont pas en dehors de la grille
 	 * - il existe une combinaison dans l'une des deux cases echangé
 	 */
-	public void echange(int ligne, int colonne,int ligne2,int colonne2) throws CandyException
+	public void echange(int ligne, int colonne,int ligne2,int colonne2,Joueur joueur) throws CandyException
 	{
 		ChainsOfRespDetecteur test = new ChainsOfRespDetecteur();
 		if(getCaseBonbon(ligne, colonne).estMeringue() || getCaseBonbon(ligne2, colonne2).estMeringue())
@@ -181,11 +182,11 @@ public class Plateau {
 				}
 				else if(coord1)
 				{
-					test.traitement(ligne, colonne, this);
+					test.traitement(ligne, colonne, this,joueur);
 				}
 				else
 				{
-					test.traitement(ligne2, colonne2, this);
+					test.traitement(ligne2, colonne2, this,joueur);
 				}
 			}
 
@@ -209,11 +210,11 @@ public class Plateau {
 				}
 				else if(coord1)
 				{
-					test.traitement(ligne, colonne, this);
+					test.traitement(ligne, colonne, this,joueur);
 				}
 				else
 				{
-					test.traitement(ligne2, colonne2, this);
+					test.traitement(ligne2, colonne2, this,joueur);
 				}
 			}
 		}
@@ -275,7 +276,7 @@ public class Plateau {
 	/*
 	 * cette fonction fait tomber tout les bonbons la ou il y a du vide
 	 */
-	public void decaleVersBas()
+	public void chute()
 	{
 		for(int i=0;i<taille;i++)
 		{

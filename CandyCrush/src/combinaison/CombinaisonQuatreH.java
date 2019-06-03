@@ -3,6 +3,7 @@ package combinaison;
 
 import bonbon.Vide;
 import exception.CandyException;
+import game.Joueur;
 import terrain.Case;
 import terrain.Plateau;
 
@@ -245,5 +246,14 @@ public class CombinaisonQuatreH extends Combinaison{
 		else
 			return false;
 		
+	}
+
+	@Override
+	public int gainPoints() {
+		if(estCombiRaye())
+		{
+			return 200;
+		}
+		return 60;
 	}
 }
