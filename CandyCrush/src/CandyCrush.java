@@ -1,5 +1,4 @@
 import java.util.Optional;
-
 import TypeDePartie.Partie;
 import TypeDePartie.RestrictionTemps;
 import exception.CandyException;
@@ -370,7 +369,6 @@ public class CandyCrush extends Application {
 				
 				
 			} catch (CandyException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 

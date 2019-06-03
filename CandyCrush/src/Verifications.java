@@ -75,7 +75,6 @@ public class Verifications {
 				System.out.println("NON");
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
