@@ -1,7 +1,11 @@
 package bonbon;
 
 
-//A faire estMeringue, getCouleur, estSpecial
+/*
+ * interface qui implemente bonbon speciale, meringue, vide et bonbon ordinaire 
+ * grace aux methodes ci-dessous
+ * @author
+ */
 public interface Contenant {
 	public Couleur getCouleur();
 	public boolean estSpecial();

@@ -1,5 +1,9 @@
 package bonbon;
 
+/*
+ * classe qui creer la meringue implementé par contenant
+ * @author
+ */
 public class Meringue implements Contenant{
 	
 	public Meringue()

@@ -1,26 +1,44 @@
 package bonbon;
 
-
+/*
+ * classe de gestion des bonbons ordinaire implementant l'interface contenant
+ * @author 
+ */
 public class BonbonOrdinaire implements Contenant{
 
 	private Couleur couleur;
 	private boolean estSpecial;
 
+	/*
+	 * creer un bonbon ordianire
+	 */
 	public BonbonOrdinaire(Couleur couleur) {
 		setCouleur(couleur);
 		this.estSpecial=false;
 	}
 	
+	/*
+	 * creer un bonbon de couleur du parametre couleur
+	 * @param couleur couleur que l'on veut donner au bonbon
+	 */
 	private void setCouleur(Couleur couleur)
 	{
 		this.couleur = couleur;
 	}
 	
+	/*
+	 * recupere la couleur d'un bonbon ordinaire
+	 * @return couleur	la couleur du bonbon ordinaire
+	 */
 	public Couleur getCouleur() {
 		return couleur;
 	}
 	
 
+	/*
+	 * retourne si le bonbon est special
+	 * @return false comme le bonbon n'est pas un bonbon rayé
+	 */
 	public boolean estSpecial() {
 		return estSpecial;
 	}
@@ -45,6 +63,12 @@ public class BonbonOrdinaire implements Contenant{
 			return "  VIO  ";
 		}
 	}
+	
+	/*
+	 * verifie si un bonbon est de meme couleur qu'un autre bonbon
+	 * @param a	contenant verifiant la couleur
+	 * @return true si a est de meme couleur que le bonbon voulue , false sinon
+	 */
 	public boolean estMemeCouleur(Contenant a)
 	{
 		
@@ -86,6 +110,7 @@ public class BonbonOrdinaire implements Contenant{
 		return true;
 	}
 
+	
 	@Override
 	public boolean estMeringue() {
 		return false;

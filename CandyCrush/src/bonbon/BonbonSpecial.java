@@ -1,5 +1,9 @@
 package bonbon;
 
+/*
+ * classe des bonbons speciaux implementant l'interface contenant
+ * @author
+ */
 public class BonbonSpecial implements Contenant {
 	
 	Couleur couleur;

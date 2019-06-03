@@ -1,5 +1,8 @@
 package bonbon;
 
+/*
+ * classe qui verifie une case vide, implementant l'interface contenant
+ */
 public class Vide implements Contenant {
 	
 	public Vide()
