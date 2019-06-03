@@ -2,7 +2,7 @@ package bonbon;
 
 
 public class BonbonOrdinaire implements Contenant{
-		
+
 	private Couleur couleur;
 	private boolean estSpecial;
 
