@@ -54,12 +54,12 @@ public class OutilsPlateau{
 		{
 			return new Meringue();
 		}
-		else if(randBonbonType>0.03 && randBonbonType<=0.75)
+		else //if(randBonbonType>0.03 && randBonbonType<=0.75)
 		{
 			return new BonbonOrdinaire(getAleaCouleur());
 		}
-		else
-			return new BonbonSpecial(getAleaCouleur());
+		//else
+			//return new BonbonSpecial(getAleaCouleur());
 		
 	}
 	
@@ -89,6 +89,7 @@ public class OutilsPlateau{
 		{
 			continuerRecherche=traitementPlateau(0,0,p,joueur);
 			rempliAleaGrille(p);
+			continuerRecherche=traitementPlateau(0,0,p,joueur);
 		}
 	}
 	

@@ -1,6 +1,8 @@
 package combinaison;
 
 
+import bonbon.BonbonSpecial;
+import bonbon.Couleur;
 import bonbon.Vide;
 import exception.CandyException;
 import game.Joueur;
@@ -227,6 +229,8 @@ public class CombinaisonQuatreV extends Combinaison {
 		public void setEstCombinaison(boolean estCombinaison) {
 			this.estCombinaison = estCombinaison;
 		}
+		
+
 
 
 		@Override
@@ -238,10 +242,12 @@ public class CombinaisonQuatreV extends Combinaison {
 			}
 			else if(estCombinaison()==true)
 			{
+				Couleur save = un.getBonbon().getCouleur();
 				un.setBonbon(new Vide());
 				deux.setBonbon(new Vide());
 				trois.setBonbon(new Vide());
 				quatre.setBonbon(new Vide());
+				quatre.setBonbon(new BonbonSpecial(save));
 				return true;
 			}
 			else

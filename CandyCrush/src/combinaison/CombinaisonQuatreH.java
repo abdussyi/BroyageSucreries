@@ -1,6 +1,8 @@
 package combinaison;
 
 
+import bonbon.BonbonSpecial;
+import bonbon.Couleur;
 import bonbon.Vide;
 import exception.CandyException;
 import game.Joueur;
@@ -226,6 +228,30 @@ public class CombinaisonQuatreH extends Combinaison{
 	public void setEstCombinaison(boolean estCombinaison) {
 		this.estCombinaison = estCombinaison;
 	}
+	
+	public boolean esCaseAdjacente(Case a, Case b)
+	{
+		if(a.getColonne()==b.getColonne() && (a.getLigne()==b.getLigne()-1 || a.getLigne()==b.getLigne()+1))
+		{
+			return true;
+		}
+		else
+			return false;
+	}
+	
+	public Case caseBonbonDeplace(int l, int c, Plateau p)
+	{
+		Case pointeur = p.getGrille()[l][c];
+
+		if(esCaseAdjacente(deux,pointeur) || pointeur.equals(deux))
+		{
+			return deux;
+		}
+		else
+		{
+			return trois;
+		}
+	}
 
 	
 	@Override
@@ -237,10 +263,12 @@ public class CombinaisonQuatreH extends Combinaison{
 		}
 		else if(estCombinaison()==true)
 		{
+			BonbonSpecial raye = new BonbonSpecial(un.getBonbon().getCouleur());
 			un.setBonbon(new Vide());
 			deux.setBonbon(new Vide());
 			trois.setBonbon(new Vide());
 			quatre.setBonbon(new Vide());
+			caseBonbonDeplace(l,c,p).setBonbon(raye);
 			return true;
 		}
 		else

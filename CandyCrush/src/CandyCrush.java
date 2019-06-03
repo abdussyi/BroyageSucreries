@@ -1,14 +1,21 @@
+import java.util.Optional;
+
 import exception.CandyException;
 import game.Joueur;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.input.ClipboardContent;
@@ -70,6 +77,7 @@ public class CandyCrush extends Application {
 	private Plateau plateau;
 	private Joueur joueur;
 	private Label score;
+	private Label nbCoup;
 	/**
 	 * Tableau 2D d'entiers. Chaque entier correspond à l'indice d'une image (0-->Candy_0, 1-->Candy_1,...)
 	 * Faudra faire mieux évidemment dans le projet...
@@ -81,9 +89,10 @@ public class CandyCrush extends Application {
 		try {
 			primaryStage.setTitle("Candy Crush");
 
-			plateau = new Plateau("plateaux/plateau5.csv");
+			plateau = new Plateau("plateaux/plateau3.csv");
 			joueur = new Joueur("Samet");
 			score = new Label();
+			nbCoup = new Label();
 			initImagesCandies();
 			
 			root = new BorderPane(grillePane);
@@ -111,6 +120,7 @@ public class CandyCrush extends Application {
 		lChrono = new Label();
 		hbox.getChildren().add(lChrono);
 		hbox.getChildren().add(score);
+		hbox.getChildren().add(nbCoup);
 		
 		((BorderPane)root).setBottom(hbox);
 		
@@ -305,15 +315,16 @@ public class CandyCrush extends Application {
 			
 			try {
 				plateau.echange(ls, cs, lt, ct,joueur);
+				plateau.chute();
 				score.setText("Votre score est : "+joueur.getScore());
-				//il fauudrait une fonction qui teste toutes les cases modifié
-				//arretez de cherchez si aucune combinaison a ete trouvé sur toute la grille
-				//cette boucle parcours tout le tableau et recherche des combi
+				joueur.addNbDeplacement();
+				nbCoup.setText("  Nombre de deplacement : "+joueur.getNbDeplacement());
+				
 
 				OutilsPlateau outils = new OutilsPlateau();
 				outils.traitementPlateauAll(plateau,joueur);
 				score.setText("  Votre score est : "+joueur.getScore());
-
+				
 
 				
 				
@@ -322,6 +333,22 @@ public class CandyCrush extends Application {
 				e.printStackTrace();
 			}
 
+		}
+	}
+	
+	public void fenetreFinJeu() {
+		Alert dialog = new Alert(AlertType.CONFIRMATION);
+
+		dialog.setTitle("Victoire");
+		dialog.setHeaderText("Félicitation ! Vous avez gagné ! Voulez-vous recommencez le jeu ?");
+
+		ButtonType oui = new ButtonType("Oui");
+		ButtonType non = new ButtonType("Non", ButtonData.CANCEL_CLOSE);
+		dialog.getButtonTypes().setAll(oui,non);
+		
+		Optional<ButtonType> answer = dialog.showAndWait();
+		if (answer.get() == oui) {
+			Platform.exit();
 		}
 	}
 

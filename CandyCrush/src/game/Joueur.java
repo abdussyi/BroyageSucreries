@@ -22,8 +22,8 @@ public class Joueur {
 
 
 
-	public void setNbDeplacement(int nbDeplacement) {
-		this.nbDeplacement = nbDeplacement;
+	public void addNbDeplacement() {
+		this.nbDeplacement = nbDeplacement + 1;
 	}
 
 
