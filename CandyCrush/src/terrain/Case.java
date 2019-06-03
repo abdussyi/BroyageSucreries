@@ -7,6 +7,10 @@ import bonbon.Couleur;
 import bonbon.Meringue;
 import bonbon.Vide;
 
+/*
+ * initialise une case grace a une ligne et une colonne et permet d'avoir le bonbon
+ * @author 
+ */
 public class Case {
 	//une case contient un Contenant
 	
@@ -14,7 +18,10 @@ public class Case {
 	private int ligne;
 	private int colonne;
 	
-	//à mettre dans bonbon
+	/*
+	 * recupere le nombre du bonbon du package bonbon
+	 * @return le nombre du bonbon
+	 */
 	public int getBonbonNum()
 	{
 		if(bonbon.estSpecial())

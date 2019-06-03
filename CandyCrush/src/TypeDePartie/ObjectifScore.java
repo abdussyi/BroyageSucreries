@@ -2,6 +2,10 @@ package TypeDePartie;
 
 import game.Joueur;
 
+/*
+ * la classe qui implemente l'objectif d'avoir un certain score pour gagner la partie 
+ * @author 
+ */
 public class ObjectifScore implements Objectif{
 	private int objectifScore;
 	Joueur joueur;
@@ -12,7 +16,10 @@ public class ObjectifScore implements Objectif{
 		this.joueur=joueur;
 	}
 	
-	
+	/*
+	 * verifie si l'objectif du score est atteint
+	 * @return true si le score a battre est depasse
+	 */
 	public boolean objectifAtteint()
 	{
 		if(joueur.getScore()>=objectifScore)

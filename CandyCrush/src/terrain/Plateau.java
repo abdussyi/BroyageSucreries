@@ -49,7 +49,10 @@ public class Plateau {
 		this.taille=taille;
 	}
 	
-	//Cete methode charge le plateau depuis un fichier
+	/*
+	 * Cete methode charge le plateau depuis un fichier
+	 * @param rep nom du fichier a charger
+	 */
 	public void loadFile(String rep) throws IOException
 	{
 		//read the file, line by line from txt
@@ -96,8 +99,11 @@ public class Plateau {
 		fr.close();
 	}
 	
-	//Cette methode metier, permet d'initaialiser a NULL toutes la grille
-	//c'est une grille carré
+	/*
+	 * Cette methode metier, permet d'initaialiser a NULL toutes la grille
+	 * c'est une grille carré
+	 * @param taille taille de la grille a initialiser
+	 */
 	public void initGrille(int taille)
 	{
 		//a verifier, j'ai un doute sur la syntaxe
@@ -115,6 +121,10 @@ public class Plateau {
 	{
 		this.grille[ligne][colonne]=new Case(bonbon,ligne,colonne);
 	}
+	
+	/*
+	 * 
+	 */
 	public Contenant getCaseBonbon(int ligne, int colonne) throws CandyException
 	{
 		if (ligne>taille-1 || colonne>taille-1)
@@ -132,6 +142,13 @@ public class Plateau {
 		return this.grille;
 	}
 	
+	/*
+	 * echange entre deux contenant d'une grille 
+	 * @param ligne designe la ligne du premier contenant
+	 * @param colonne designe la colonne du premier contenant
+	 * @param ligne2 designe la ligne du deuxieme contenant
+	 * @param colonne2 designe la colonne du deuxieme contenant
+	 */
 	public void echange_aux(int ligne, int colonne,int ligne2,int colonne2)
 	{
 		Contenant temp = grille[ligne2][colonne2].getBonbon();
@@ -220,6 +237,12 @@ public class Plateau {
 		}
 	}
 	
+	/*
+	 * verifie si la case selectionner est dans la grille 
+	 * @param l la ligne selctionne dans la grille
+	 * @param c la colonne selctionne dans la grille
+	 * @return true si la case est dans la grille
+	 */
 	public boolean caseEstDansGrille(int l, int c)
 	{
 		if(l>taille-1||c>taille-1||l<0||c<0)
@@ -230,9 +253,10 @@ public class Plateau {
 			return true;
 	}
 	
+	/*
+	 * methode qui affiche la grille
+	 */
 	public void afficherGrille()
-
-
 	{
 		for(int ligne=0;ligne<taille;ligne++)
 		{
@@ -245,7 +269,11 @@ public class Plateau {
 	}
 	
 	
-	//cette fonction decale vers le bas un ensemble de bonbon, c'est utile pour decaleVersBasColonne
+	/*
+	 * cette fonction decale vers le bas un ensemble de bonbon, c'est utile pour decaleVersBasColonne
+	 * @param colonne la colonne selectionne
+	 * @param ligneArrive la ligne vers laquelle on descend qui est la priere case non vide de la colonne
+	 */
 	public void decaleEnsembleColonne(int colonne, int ligneArrive) throws IllegalArgumentException
 	{
 		if(!(grille[ligneArrive][colonne].getBonbon().estVide()))
@@ -261,6 +289,7 @@ public class Plateau {
 	
 	/*
 	 * cette fonction fait tomber les bonbon d'une colonne de sorte qu'il n'y ait plus de vide
+	 * @param colonne la colonne selectionne
 	 */
 	public void decaleVersBasColonne(int colonne)
 	{
@@ -284,6 +313,10 @@ public class Plateau {
 		}
 	}
 	
+	/*
+	 * supprime la ligne entiere
+	 * @param ligne la ligne qui va etre supprime
+	 */
 	public void supprLigne(int ligne)
 	{
 		for(int i=0;i<taille;i++)
@@ -292,6 +325,10 @@ public class Plateau {
 		}
 	}
 	
+	/*
+	 * supprime la colonne entiere
+	 * @param colonne la colonne qui va etre supprime
+	 */
 	public void supprColonne(int colonne)
 	{
 		for(int i=0;i<taille;i++)

@@ -2,6 +2,10 @@ package TypeDePartie;
 
 import game.Joueur;
 
+/*
+ * la classe qui va implementer une partie avec un nombre de deplacement restreint
+ * @author 
+ */
 public class RestrictionDeplacement implements Restriction {
 	private int deplacementLimite;
 	private Joueur joueur;
@@ -12,7 +16,10 @@ public class RestrictionDeplacement implements Restriction {
 		this.joueur=joueur;
 	}
 	
-
+	/*
+	 * verifie si la restriction est atteinte
+	 * @return true si le nombre de deplacement est superieur au nombre de deplacement autorise
+	 */
 	public boolean restrictionsAtteinte()
 	{
 		if(joueur.getNbDeplacement()>=deplacementLimite)

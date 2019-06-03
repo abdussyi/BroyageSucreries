@@ -6,8 +6,10 @@ import exception.CandyException;
 import terrain.OutilsPlateau;
 import terrain.Plateau;
 
-//coming soon
-//permet de sauvegarder ses parties
+/*
+ * permet de sauvegarder ses parties
+ * @author 
+ */
 public class Jeu {
 	
 	private Plateau plateau;
@@ -24,6 +26,10 @@ public class Jeu {
 		this.finPartie=false;
 	}
 	
+	/*
+	 * initialise la partie avec le plateau donnee
+	 * @throws CandyException
+	 */
 	public void jouer() throws CandyException
 	{
 		while(finPartie==false)

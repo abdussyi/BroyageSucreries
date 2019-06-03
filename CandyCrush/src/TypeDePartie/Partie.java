@@ -10,6 +10,10 @@ import javafx.scene.control.Label;
 import terrain.Case;
 import terrain.Plateau;
 
+/*
+ * la classe qui designe la partie qui va etre joue
+ * @author 
+ */
 public class Partie {
 	Objectif objectif;
 	Restriction restriction;
@@ -59,7 +63,11 @@ public class Partie {
 	
 	
 
-	
+	/*
+	 * recupere le nom d'uun fichier et le charge ensuite avec l'objectif a atteindre
+	 * qui est donne dans le fichier
+	 * @param rep le fichier qui va etre recuperer
+	 */
 	public void loadTypePartie(String rep) throws IOException
 	{
 		

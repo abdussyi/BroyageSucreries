@@ -10,6 +10,7 @@ import terrain.Plateau;
 
 /**
  * Sous-classe concrète qui définit un maillon de la chaine.
+ * @author 
  */
 public class CombinaisonTroisH extends Combinaison {
 	
@@ -40,7 +41,14 @@ public class CombinaisonTroisH extends Combinaison {
 		setEstCombiRaye(false);
 	}
 	
-	
+	/*
+	 * cette fonction detecte une eventuelle combinaison et la sauvegarde dans les champs
+	 * @param l	designe le numero de la ligne dans le plateau
+	 * @param c designe le numero de la colonne dans le plateau
+	 * @param p	designe le plateau dans lequel la detection va etre faite
+	 * @throws CandyException
+	 * @return true si la detection a pu se faire
+	 */
 	public boolean detection(int l, int c, Plateau p) throws CandyException{
 		
 		//sauvegarde des voisin de la case afin de faciliter la la lisibilité du code
@@ -138,6 +146,13 @@ public class CombinaisonTroisH extends Combinaison {
 		
 	}
 	
+	/*
+	 * verifie si dans la combinaison se trouve un bonbon special
+	 * @param a designe le premier bonbon
+	 * @param b designe le deuxieme bonbon
+	 * @param c designe le troisieme bonbon
+	 * return true si il existe un bonbon raye dans la combinaison
+	 */
 	public boolean verifRaye(Case a,Case b, Case c)
 	{
 		if(a.getBonbon().estSpecial() || b.getBonbon().estSpecial() || c.getBonbon().estSpecial())
@@ -190,14 +205,20 @@ public class CombinaisonTroisH extends Combinaison {
 	}
 
 	
-	//cette fonction determine comment l'un des bonbon rayé a été généré
+	/*
+	 * cette fonction determine comment l'un des bonbon rayé a été généré
+	 * @return ture si le bonbon raye est genere
+	 */
 	public boolean supprVerticale()
 	{
 		BonbonSpecial test = (BonbonSpecial) BonbonRaye().getBonbon();
 		return test.estObtenuVerticalement();
 	}
 	
-	//cette fonction retourne la case ou le bonbon rayé est situé
+	/*
+	 * cette fonction retourne la case ou le bonbon rayé est situé
+	 * @return case la case ou le bonbon raye va etre situe
+	 */
 	public Case BonbonRaye()
 	{
 		if(un.getBonbon().estSpecial())
@@ -240,6 +261,9 @@ public class CombinaisonTroisH extends Combinaison {
 			return false;
 	}
 
+	/*
+	 * affiche le gain de point suivant la combinaison trouve
+	 */
 	@Override
 	public int gainPoints() {
 		if(estCombiRaye())

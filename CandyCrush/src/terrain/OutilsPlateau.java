@@ -65,7 +65,10 @@ public class OutilsPlateau{
 		
 	}
 	
-	
+	/*
+	 * rempli la grille aleatoirement 
+	 * @param p le plateau dans lequel la grille sera rempli
+	 */
 	public void rempliAleaGrille(Plateau p)
 	{
 		int taille = p.getTaille();
@@ -82,7 +85,12 @@ public class OutilsPlateau{
 	}
 	
 	
-	
+	/*
+	 * cherche les combinaisons apres la premiere combinaison trouver et le remplissement 
+	 * aleatoire de la grille
+	 * @param p le plateau dans lequel nous jouons 
+	 * @param joueur classe du joueur
+	 */
 	public void traitementPlateauAll(Plateau p,Joueur joueur)
 	{
 		//ajouter le remplissage auto apres traitement
@@ -99,10 +107,15 @@ public class OutilsPlateau{
 	
 	
 	
-	// traitement recursif, qui permet de traiter entierement le tableau apres un echange
-	// mais en meme permet de savoir s'il y a eu au moins un traitement dans la grille
-	// dans le cas ou il y a eu un traitement, la grille doit re-etre explorer sinon pas la peine
-	// en somme cette fonction parcours le tableau et effectue un traitement s'il y en a un
+	/* traitement recursif, qui permet de traiter entierement le tableau apres un echange
+	* mais en meme permet de savoir s'il y a eu au moins un traitement dans la grille
+	* dans le cas ou il y a eu un traitement, la grille doit re-etre explorer sinon pas la peine
+	* en somme cette fonction parcours le tableau et effectue un traitement s'il y en a un
+	* @param l	designe le numero de la ligne dans le plateau
+	* @param c designe le numero de la colonne dans le plateau
+	* @param p	designe le plateau dans lequel la detection va etre faite
+	* @param joueur repris de la classe joueur
+	*/
 	public boolean traitementPlateau(int ligne, int colonne,Plateau p,Joueur joueur)
 	{
 		if(ligne==9 && colonne==9)

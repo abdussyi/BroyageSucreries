@@ -1,5 +1,8 @@
 package game;
-
+/*
+ * classe qui initialise le joueur
+ * @author 
+ */
 public class Joueur {
 	private String nom;
 	private int score;
@@ -38,6 +41,7 @@ public class Joueur {
 	public int getScore() {
 		return score;
 	}
+	
 	public void addScore(int score) {
 		this.score = this.score + score;
 	}

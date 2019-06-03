@@ -5,7 +5,8 @@ import game.Joueur;
 import terrain.Plateau;
 
 /**
- * Définit l'interface d'un maillon de la chaine.
+ * Definit l'interface d'un maillon de la chaine.
+ * @author 
  */
 public abstract class Combinaison {
 
@@ -13,7 +14,7 @@ public abstract class Combinaison {
     
     /**
      * Fixe le maillon suivant dans la chaine
-     * @param pSuivant
+     * @param pSuivant qui nous aide a passer a la prochaine detection
      */
     public void setSuivant(Combinaison pSuivant) {
         suivant = pSuivant;
@@ -24,6 +25,10 @@ public abstract class Combinaison {
      * Puis demande au maillon suivant d'en faire autant,
      * si le maillon courant n'a pas géré l'opération.
      * @param pNombre
+     * @param l	designe le numero de la ligne dans le plateau
+	 * @param c designe le numero de la colonne dans le plateau
+	 * @param p	designe le plateau dans lequel la detection va etre faite
+	 * @param joueur designe le joueur et nous permet d'ajouter les points suivant la combinaison trouver  
      * @return Si l'opération a été gérée.
      */
     public boolean TraitementCombi(int l, int c,Plateau p,Joueur joueur) {
@@ -39,6 +44,16 @@ public abstract class Combinaison {
         return false;
     }
     
+    /**
+     * Appelle la detection sur le maillon courant
+     * Puis demande au maillon suivant d'en faire autant,
+     * si le maillon courant n'a pas géré l'opération.
+     * @param pNombre
+     * @param l	designe le numero de la ligne dans le plateau
+	 * @param c designe le numero de la colonne dans le plateau
+	 * @param p	designe le plateau dans lequel la detection va etre faite
+	 * @return true si la detection a pu se faire
+	 */
     public boolean testDetection(int l, int c,Plateau p) {
         try {
 

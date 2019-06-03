@@ -2,6 +2,10 @@ package TypeDePartie;
 
 import terrain.Plateau;
 
+/*
+ * designe la classe ou le type de partie est l'objectid de faire disparaitre toutes les meringues
+ * @author 
+ */
 public class ObjectifMeringue implements Objectif{
 	
 	
@@ -13,6 +17,10 @@ public class ObjectifMeringue implements Objectif{
 		this.plateau=plateau;
 	}
 	
+	/*
+	 * verifie si l'objectif des meringues est atteint
+	 * @return true si il n'y a plus de meringue sur le plateau
+	 */
 	public boolean objectifAtteint()
 	{
 		int taille=plateau.getTaille();

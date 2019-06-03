@@ -9,40 +9,29 @@ public class BonbonOrdinaire implements Contenant{
 	private Couleur couleur;
 	private boolean estSpecial;
 
-	/*
-	 * creer un bonbon ordianire
-	 */
+	
 	public BonbonOrdinaire(Couleur couleur) {
 		setCouleur(couleur);
 		this.estSpecial=false;
 	}
 	
-	/*
-	 * creer un bonbon de couleur du parametre couleur
-	 * @param couleur couleur que l'on veut donner au bonbon
-	 */
+	
 	private void setCouleur(Couleur couleur)
 	{
 		this.couleur = couleur;
 	}
 	
-	/*
-	 * recupere la couleur d'un bonbon ordinaire
-	 * @return couleur	la couleur du bonbon ordinaire
-	 */
 	public Couleur getCouleur() {
 		return couleur;
 	}
 	
-
-	/*
-	 * retourne si le bonbon est special
-	 * @return false comme le bonbon n'est pas un bonbon ray�
-	 */
 	public boolean estSpecial() {
 		return estSpecial;
 	}
-
+	
+	/*
+	 * retourne la couleur de la case en String
+	 */
 	public String AfficherCouleur()
 	{
 

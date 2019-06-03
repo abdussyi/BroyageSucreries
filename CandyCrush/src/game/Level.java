@@ -5,7 +5,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-
+/*
+ * choisis le type de niveau
+ * @author 
+ */
 public class Level {
 	
 	//convention; champs nuls --> pas d'objectifs
@@ -109,7 +112,6 @@ public class Level {
 	public void setTemps(int temps) {
 		this.temps = temps;
 	}
-
 
 	public String getObjectifs() {
 		return ObjectifPricipale;
