@@ -8,16 +8,43 @@ public class BonbonSpecial implements Contenant {
 	
 	Couleur couleur;
 	private boolean estSpecial;
-	
+	private boolean obtenuHorizontalement;
+	private boolean obtenuVerticalement;
 	
 	public BonbonSpecial(Couleur couleur)
 	{
 		this.estSpecial=true;
 		setCouleur(couleur);
+		this.obtenuHorizontalement=false;
+		this.obtenuVerticalement=false;
 	}
 	
 
 	
+	public boolean estObtenuHorizontalement() {
+		return obtenuHorizontalement;
+	}
+
+
+
+	public void setObtenuHorizontalement(boolean obtenuHorizontalement) {
+		this.obtenuHorizontalement = obtenuHorizontalement;
+	}
+
+
+
+	public boolean estObtenuVerticalement() {
+		return obtenuVerticalement;
+	}
+
+
+
+	public void setObtenuVerticalement(boolean obtenuVerticalement) {
+		this.obtenuVerticalement = obtenuVerticalement;
+	}
+
+
+
 	private void setCouleur(Couleur couleur)
 	{
 		this.couleur = couleur;

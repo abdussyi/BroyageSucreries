@@ -14,13 +14,11 @@ public class Partie {
 	Objectif objectif;
 	Restriction restriction;
 	Joueur joueur;
-	Label lChrono;
 	Plateau plateau;
 	
-	public Partie(Joueur joueur,Label lChrono,Plateau plateau,String repertoire) throws IOException
+	public Partie(Joueur joueur,Plateau plateau,String repertoire) throws IOException
 	{
 		this.joueur=joueur;
-		this.lChrono=lChrono;
 		this.plateau=plateau;
 		loadTypePartie(repertoire);
 	}
@@ -49,13 +47,6 @@ public class Partie {
 		this.joueur = joueur;
 	}
 
-	public Label getlChrono() {
-		return lChrono;
-	}
-
-	public void setlChrono(Label lChrono) {
-		this.lChrono = lChrono;
-	}
 
 	public Plateau getPlateau() {
 		return plateau;
@@ -107,13 +98,13 @@ public class Partie {
 					line = br.readLine();
 				    lines = line.split(";");
 					int temps=Integer.parseInt(lines[1]);
-					restriction = new RestrictionTemps(temps,joueur,lChrono);
+					restriction = new RestrictionTemps(temps,joueur);
 			    }
 			    else if(lines[0].matches("TEMPS"))
 			    {
 			    	lines = line.split(";");
 					int temps=Integer.parseInt(lines[1]);
-					restriction = new RestrictionTemps(temps,joueur,lChrono);
+					restriction = new RestrictionTemps(temps,joueur);
 			    }
 			    else if(lines[0].matches("ELIMINER_MERINGUE"))
 			    {

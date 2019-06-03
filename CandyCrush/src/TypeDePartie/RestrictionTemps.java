@@ -5,7 +5,6 @@ import javafx.scene.control.Label;
 
 public class RestrictionTemps implements Restriction{
 	private int tempsLimite;//en seconde
-	private Label lChrono;
 	private int minute;
 	private int seconde;
 	
@@ -25,10 +24,9 @@ public class RestrictionTemps implements Restriction{
 		this.seconde = seconde;
 	}
 
-	public RestrictionTemps(int tempsLimite,Joueur joueur,Label lChrono)
+	public RestrictionTemps(int tempsLimite,Joueur joueur)
 	{
 		this.tempsLimite=tempsLimite;
-		this.lChrono=lChrono;
 		this.seconde=0;
 		this.minute=0;
 	}

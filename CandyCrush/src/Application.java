@@ -21,7 +21,7 @@ public class Application {
 		//plateau.echange(0, 6, 1, 6,joueur);
 		plateau.chute();
 		
-		Partie partie = new Partie(joueur, null, plateau, "plateaux/plateau4.csv");
+		Partie partie = new Partie(joueur, plateau, "plateaux/plateau4.csv");
 		
 		if (partie.getObjectif().objectifAtteint())
 		{

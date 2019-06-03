@@ -230,14 +230,48 @@ public class CombinaisonQuatreV extends Combinaison {
 			this.estCombinaison = estCombinaison;
 		}
 		
-
+		//cette fonction determine comment l'un des bonbon rayé a été généré
+		public boolean supprVerticale()
+		{
+			BonbonSpecial test = (BonbonSpecial) BonbonRaye().getBonbon();
+			return test.estObtenuVerticalement();
+		}
+		
+		//cette fonction retourne la case ou le bonbon rayé est situé
+		public Case BonbonRaye()
+		{
+			if(un.getBonbon().estSpecial())
+			{
+				return un;
+			}
+			if(deux.getBonbon().estSpecial())
+			{
+				return deux;
+			}
+			if(trois.getBonbon().estSpecial())
+			{
+				return trois;
+			}
+			else
+			{
+				return quatre;
+			}
+		}
 
 
 		@Override
 		public boolean traitementSpecial(int l, int c, Plateau p) {
+			
 			if(estCombinaison()==true && estCombiRaye())
 			{
-				p.supprColonne(un.getColonne());
+				if(supprVerticale()==true)
+				{
+					p.supprColonne(BonbonRaye().getColonne());
+				}
+				else
+				{
+					p.supprLigne(BonbonRaye().getLigne());
+				}
 				return true;
 			}
 			else if(estCombinaison()==true)
@@ -247,7 +281,9 @@ public class CombinaisonQuatreV extends Combinaison {
 				deux.setBonbon(new Vide());
 				trois.setBonbon(new Vide());
 				quatre.setBonbon(new Vide());
-				quatre.setBonbon(new BonbonSpecial(save));
+				BonbonSpecial raye = new BonbonSpecial(save);
+				raye.setObtenuVerticalement(true);
+				quatre.setBonbon(raye);
 				return true;
 			}
 			else

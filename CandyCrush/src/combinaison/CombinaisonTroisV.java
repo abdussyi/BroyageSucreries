@@ -1,5 +1,6 @@
 package combinaison;
 
+import bonbon.BonbonSpecial;
 import bonbon.Vide;
 import exception.CandyException;
 import game.Joueur;
@@ -187,12 +188,43 @@ public class CombinaisonTroisV extends Combinaison {
 		this.estCombinaison = estCombinaison;
 	}
 
+	//cette fonction determine comment l'un des bonbon rayé a été généré
+	public boolean supprVerticale()
+	{
+		BonbonSpecial test = (BonbonSpecial) BonbonRaye().getBonbon();
+		return test.estObtenuVerticalement();
+	}
+	
+	//cette fonction retourne la case ou le bonbon rayé est situé
+	public Case BonbonRaye()
+	{
+		if(un.getBonbon().estSpecial())
+		{
+			return un;
+		}
+		if(deux.getBonbon().estSpecial())
+		{
+			return deux;
+		}
+		else
+		{
+			return trois;
+		}
+	}
+
 
 	@Override
 	public boolean traitementSpecial(int l, int c, Plateau p) {
 		if(estCombinaison()==true && estCombiRaye())
 		{
-			p.supprColonne(un.getColonne());
+			if(supprVerticale()==true)
+			{
+				p.supprColonne(BonbonRaye().getColonne());
+			}
+			else
+			{
+				p.supprLigne(BonbonRaye().getLigne());
+			}
 			return true;
 		}
 		else if(estCombinaison()==true)

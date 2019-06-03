@@ -19,6 +19,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.image.Image;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
@@ -82,6 +83,7 @@ public class CandyCrush extends Application {
 	private Label nbCoup;
 	Partie partie;
 	int minute,seconde;
+	String nomPlateau;
 	/**
 	 * Tableau 2D d'entiers. Chaque entier correspond à l'indice d'une image (0-->Candy_0, 1-->Candy_1,...)
 	 * Faudra faire mieux évidemment dans le projet...
@@ -91,13 +93,15 @@ public class CandyCrush extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
+			
+			fenetreChoixJeu();
 			primaryStage.setTitle("Candy Crush");
 
-			plateau = new Plateau("plateaux/plateau4.csv");
+			plateau = new Plateau("plateaux/"+nomPlateau+".csv");
 			joueur = new Joueur("Samet");
 			score = new Label();
 			nbCoup = new Label();
-			partie = new Partie(joueur,lChrono,plateau,"plateaux/plateau4.csv");
+			partie = new Partie(joueur,plateau,"plateaux/"+nomPlateau+".csv");
 			initImagesCandies();
 			
 			root = new BorderPane(grillePane);
@@ -159,7 +163,23 @@ public class CandyCrush extends Application {
 
 	}
 
-	
+	private void fenetreChoixJeu()
+	{
+		TextInputDialog dialog = new TextInputDialog("plateau1");
+		
+		dialog.setTitle("Paramètres");
+		
+		dialog.setTitle("Choix du plateau");
+		dialog.setHeaderText("Entrez le plateau sur lequel vous voulez jouer");
+		dialog.setContentText("Entrez ici ");
+		 
+		Optional<String> result = dialog.showAndWait();
+		 
+		result.ifPresent(name -> {
+		    this.nomPlateau = name;
+		});
+		
+	}
 
 	private void initTimelineChrono() {
 		// Cette KeyFrame apparaît 1s après le début de la timeline
@@ -360,8 +380,18 @@ public class CandyCrush extends Application {
 	public void fenetreFinJeu() {
 		Alert dialog = new Alert(AlertType.CONFIRMATION);
 
-		dialog.setTitle("Victoire");
-		dialog.setHeaderText("Félicitation ! Vous avez gagné ! Voulez-vous recommencez le jeu ?");
+		
+
+		if(partie.getObjectif().objectifAtteint())
+		{
+			dialog.setTitle("Victoire");
+			dialog.setHeaderText("Félicitation ! Vous avez gagné ! Voulez-vous quitter le jeu ?");
+		}
+		if(partie.getRestriction().restrictionsAtteinte())
+		{
+			dialog.setTitle("Defaite");
+			dialog.setHeaderText("Nuul ! Vous avez perdu ! Voulez-vous quitter le jeu ?");
+		}
 
 		ButtonType oui = new ButtonType("Oui");
 		ButtonType non = new ButtonType("Non", ButtonData.CANCEL_CLOSE);
