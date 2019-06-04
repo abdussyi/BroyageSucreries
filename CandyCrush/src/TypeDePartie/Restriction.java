@@ -9,5 +9,4 @@ public interface Restriction {
 	public boolean estRestrictionDeplacement();
 	public boolean estRestrictionsTempsDeplacement();
 	public boolean estRestrictionTemps();
-	//public boolean estRestrictionTemps();
 }

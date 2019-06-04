@@ -58,11 +58,7 @@ public abstract class Combinaison {
         try {
 
 			if(detection(l,c,p)) {
-				//System.out.println(this.getClass());
-				if((l==4 && c == 2)||(l==5 && c == 2))
-				{
-					System.out.println(this.getClass().getName());
-				}
+
 				return true;
 			}
 		} catch (CandyException e) {

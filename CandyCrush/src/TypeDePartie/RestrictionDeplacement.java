@@ -37,14 +37,12 @@ public class RestrictionDeplacement implements Restriction {
 
 	@Override
 	public boolean estRestrictionsTempsDeplacement() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 
 	@Override
 	public boolean estRestrictionTemps() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 	
