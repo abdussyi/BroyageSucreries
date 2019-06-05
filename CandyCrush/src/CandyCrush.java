@@ -94,13 +94,21 @@ public class CandyCrush extends Application {
 		try {
 			
 			fenetreChoixJeu();
-			primaryStage.setTitle("Candy Crush");
 
 			plateau = new Plateau("plateaux/"+nomPlateau+".csv");
 			joueur = new Joueur("Samet");
 			score = new Label();
 			nbCoup = new Label();
 			partie = new Partie(joueur,plateau,"plateaux/"+nomPlateau+".csv");
+			
+			
+			try {
+				primaryStage.setTitle(partie.getObjectif().getClass().getSimpleName()+"  "+partie.getRestriction().getClass().getSimpleName());
+			} catch (Exception e) {
+				//pour eviter le null exeption lors d'une partie sans objectif/restriction specifique
+				e.printStackTrace();
+			}
+			
 			initImagesCandies();
 			
 			root = new BorderPane(grillePane);
