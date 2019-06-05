@@ -8,6 +8,10 @@ import bonbon.Meringue;
 import combinaison.ChainsOfRespDetecteur;
 import game.Joueur;
 
+/*
+ * outils permettant de traiter le plateau
+ * @author akkus
+ */
 public class OutilsPlateau{
 	
 	

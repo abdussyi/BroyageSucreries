@@ -10,7 +10,7 @@ import terrain.Plateau;
 
 /**
  * Sous-classe concrète qui définit un maillon de la chaine.
- * @author 
+ * @author akkus
  */
 public class CombinaisonTroisH extends Combinaison {
 	

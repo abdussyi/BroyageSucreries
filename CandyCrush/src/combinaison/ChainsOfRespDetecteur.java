@@ -6,7 +6,7 @@ import terrain.Plateau;
 /*
  * Classe qui fait la chaine de responsabilite qui nous sert a detecter et ensuite pouvoir
  * traiter les differentes combinaisions possible
- * @author 
+ * @author akkus
  */
 public class ChainsOfRespDetecteur {
 

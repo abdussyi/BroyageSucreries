@@ -1,7 +1,7 @@
 package game;
 /*
  * classe qui initialise le joueur
- * @author 
+ * @author akkus
  */
 public class Joueur {
 	private String nom;

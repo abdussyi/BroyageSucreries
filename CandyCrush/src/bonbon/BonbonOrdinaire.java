@@ -2,7 +2,7 @@ package bonbon;
 
 /*
  * classe de gestion des bonbons ordinaire implementant l'interface contenant
- * @author 
+ * @author karabay
  */
 public class BonbonOrdinaire implements Contenant{
 

@@ -13,7 +13,10 @@ import combinaison.ChainsOfRespDetecteur;
 import exception.CandyException;
 import game.Joueur;
 
-
+/*
+ * plateau sur lequel est afficher la grille et quelques utilisations de la grille 
+ * @author akkus
+ */
 public class Plateau {
 	
 	/*

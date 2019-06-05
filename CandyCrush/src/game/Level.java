@@ -7,7 +7,7 @@ import java.io.IOException;
 
 /*
  * choisis le type de niveau
- * @author 
+ * @author akkus
  */
 public class Level {
 	

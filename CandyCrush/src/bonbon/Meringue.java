@@ -2,7 +2,7 @@ package bonbon;
 
 /*
  * classe qui creer la meringue implement� par contenant
- * @author
+ * @author karabay
  */
 public class Meringue implements Contenant{
 	

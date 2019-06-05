@@ -12,7 +12,7 @@ import terrain.Plateau;
 
 /*
  * la classe qui designe la partie qui va etre joue
- * @author 
+ * @author akkus et karabay
  */
 public class Partie {
 	Objectif objectif;

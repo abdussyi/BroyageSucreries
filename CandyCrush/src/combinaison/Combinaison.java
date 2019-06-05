@@ -6,7 +6,7 @@ import terrain.Plateau;
 
 /**
  * Definit l'interface d'un maillon de la chaine.
- * @author 
+ * @author karabay
  */
 public abstract class Combinaison {
 

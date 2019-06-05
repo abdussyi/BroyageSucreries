@@ -5,7 +5,7 @@ import javafx.scene.control.Label;
 
 /*
  * la classe qui va implementer une partie avec une limite de temps
- * @author 
+ * @author akkus et karabay
  */
 public class RestrictionTemps implements Restriction{
 	private int tempsLimite;//en seconde

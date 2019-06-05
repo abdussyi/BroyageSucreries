@@ -2,6 +2,7 @@ package exception;
 
 /*
  * classe CandyException qui etends les exceptions qui va afficher l'erreur trouver
+ * @author karabay
  */
 public class CandyException extends Exception {
 	

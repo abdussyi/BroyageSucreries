@@ -4,7 +4,7 @@ import game.Joueur;
 
 /*
  * la classe qui va implementer une partie avec un nombre de deplacement restreint
- * @author 
+ * @author akkus et karabay
  */
 public class RestrictionDeplacement implements Restriction {
 	private int deplacementLimite;

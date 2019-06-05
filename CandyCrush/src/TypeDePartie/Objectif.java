@@ -2,7 +2,7 @@ package TypeDePartie;
 
 /*
  * interface qui designe les differents objectifs possible d'une partie 
- * @author 
+ * @author akkus et karabay
  */
 public interface Objectif {
 	public boolean estObjectifMeringue();

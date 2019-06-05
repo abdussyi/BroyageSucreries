@@ -2,7 +2,7 @@ package bonbon;
 
 /*
  * enumeration des differentes couleurs 
- * @author 
+ * @author karabay
  */
 public enum Couleur {
 	BLEU,VIOLET,JAUNE,VERT;

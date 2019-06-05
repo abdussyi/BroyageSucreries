@@ -9,7 +9,7 @@ import bonbon.Vide;
 
 /*
  * initialise une case grace a une ligne et une colonne et permet d'avoir le bonbon
- * @author 
+ * @author akkus
  */
 public class Case {
 	//une case contient un Contenant

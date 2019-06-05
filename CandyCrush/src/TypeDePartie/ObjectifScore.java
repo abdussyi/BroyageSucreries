@@ -4,7 +4,7 @@ import game.Joueur;
 
 /*
  * la classe qui implemente l'objectif d'avoir un certain score pour gagner la partie 
- * @author 
+ * @author akkus et karabay
  */
 public class ObjectifScore implements Objectif{
 	private int objectifScore;

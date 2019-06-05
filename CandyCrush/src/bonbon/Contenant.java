@@ -4,7 +4,7 @@ package bonbon;
 /*
  * interface qui implemente bonbon speciale, meringue, vide et bonbon ordinaire 
  * grace aux methodes ci-dessous
- * @author
+ * @author karabay
  */
 public interface Contenant {
 	public Couleur getCouleur();

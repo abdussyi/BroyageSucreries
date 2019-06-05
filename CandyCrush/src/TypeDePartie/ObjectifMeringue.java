@@ -4,7 +4,7 @@ import terrain.Plateau;
 
 /*
  * designe la classe ou le type de partie est l'objectid de faire disparaitre toutes les meringues
- * @author 
+ * @author akkus et karabay
  */
 public class ObjectifMeringue implements Objectif{
 	

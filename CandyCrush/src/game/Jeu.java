@@ -8,7 +8,7 @@ import terrain.Plateau;
 
 /*
  * permet de sauvegarder ses parties
- * @author 
+ * @author akkus
  */
 public class Jeu {
 	

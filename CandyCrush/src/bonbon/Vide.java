@@ -2,6 +2,7 @@ package bonbon;
 
 /*
  * classe qui verifie une case vide, implementant l'interface contenant
+ * @author karabay
  */
 public class Vide implements Contenant {
 	
