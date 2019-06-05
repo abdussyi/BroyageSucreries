@@ -1,7 +1,6 @@
 package TypeDePartie;
 
 import game.Joueur;
-import javafx.scene.control.Label;
 
 /*
  * la classe qui va implementer une partie avec une limite de temps

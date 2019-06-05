@@ -224,8 +224,10 @@ public class CandyCrush extends Application {
 
 	private void initTimelineJeu() {
 		final KeyFrame keyframe1 = new KeyFrame(Duration.seconds(0), new KeyFrame1()); // Cette KF sera affichée tout de suite et restera jusqu'à la prochaine KF
-		final KeyFrame keyframe2 = new KeyFrame(Duration.seconds(TEMPS_AFFICHAGE_KEYFRAME1 ), new KeyFrame2()); // Cette KF2 sera affichée après 0.1s, c'est-à-dire la durée que l'on a défini pour la KF 1
-		timeline = new Timeline(keyframe1, keyframe2);
+		final KeyFrame keyframe2 = new KeyFrame(Duration.seconds(1), new KeyFrame2()); // Cette KF2 sera affichée après 0.1s, c'est-à-dire la durée que l'on a défini pour la KF 1
+		final KeyFrame keyframe3 = new KeyFrame(Duration.seconds(1), new KeyFrame3());
+		final KeyFrame keyframe4 = new KeyFrame(Duration.seconds(1), new KeyFrame4());
+		timeline = new Timeline(keyframe1, keyframe2,keyframe3,keyframe4);
 		timeline.setCycleCount(Animation.INDEFINITE); // L'animation va également boucler à l'infinie
 	}
 
@@ -255,8 +257,12 @@ public class CandyCrush extends Application {
 
 	private final class KeyFrame2 implements EventHandler<ActionEvent> {
 		public void handle(ActionEvent event) {
-
+			
+			plateau.chute();
 			gc.clearRect(0, 0, 640, 640);
+
+			dessinerPlateau();
+
 			
 			
 
@@ -272,6 +278,13 @@ public class CandyCrush extends Application {
 			// Dans cette frame, pour la démo, on redessine la grille et c'est tout
 			// Pour le projet, il y a sans doute des choses à faire pour compter les points, faire apparaître des bonbons spéciaux
 			// ou autre chose encore...
+			OutilsPlateau outils = new OutilsPlateau();
+			boolean continuerRecherche=true;
+			while(continuerRecherche==true)
+			{
+				continuerRecherche=outils.traitementPlateau(0,0,plateau,joueur);
+				score.setText("  Votre score est : "+joueur.getScore());
+			}
 			dessinerPlateau();
 		}
 	}
@@ -320,7 +333,60 @@ public class CandyCrush extends Application {
 			event.consume();
 		}
 	}
+	
+	/**
+	 * 3e KeyFrame
+	 */
+	private final class KeyFrame3 implements EventHandler<ActionEvent> {
 
+		/**
+		 * @param c : Controller qui fait appel à cet Evenement
+		 */
+
+
+		/**
+		 * Complete la grille
+		 */
+		public void handle(ActionEvent event) {
+			OutilsPlateau outils = new OutilsPlateau();
+			outils.rempliAleaGrille(plateau);
+			gc.clearRect(0, 0, 640, 640);
+			dessinerPlateau();
+
+		}
+	}
+	
+	/**
+	 * 4e KeyFrame
+	 */
+	public final class KeyFrame4 implements EventHandler<ActionEvent> {
+		
+
+		/**
+		 * Vérifie si fin du jeu
+		 * Si oui, passe au niveau suivant
+		 * @see MenuController#getNextNiveau()
+		 */
+		public void handle(ActionEvent event) {
+			
+			
+			try {
+				if(partie.getObjectif().objectifAtteint())
+				{
+					fenetreFinJeu();
+				}
+				else if(partie.getRestriction().restrictionsAtteinte())
+				{
+					fenetreFinJeu();
+				}
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			gc.clearRect(0, 0, 640, 640);
+		}
+	}
 	private final class DragDroppedEvent implements EventHandler<DragEvent> {
 		private DragDroppedEvent() {
 		}
@@ -354,25 +420,19 @@ public class CandyCrush extends Application {
 			
 			try {
 				plateau.echange(ls, cs, lt, ct,joueur);
-				plateau.chute();
+				timeline.play();
+				
+				
+				//plateau.chute();
+				
 				score.setText("Votre score est : "+joueur.getScore());
 				joueur.addNbDeplacement();
 				nbCoup.setText("  Nombre de deplacement : "+joueur.getNbDeplacement());
-				
-
-				OutilsPlateau outils = new OutilsPlateau();
-				outils.traitementPlateauAll(plateau,joueur);
 				score.setText("  Votre score est : "+joueur.getScore());
+				/*
+
+				*/
 				
-				
-				if(partie.getObjectif().objectifAtteint())
-				{
-					fenetreFinJeu();
-				}
-				else if(partie.getRestriction().restrictionsAtteinte())
-				{
-					fenetreFinJeu();
-				}
 
 				
 				
@@ -392,21 +452,22 @@ public class CandyCrush extends Application {
 		{
 			dialog.setTitle("Victoire");
 			dialog.setHeaderText("Félicitation ! Vous avez gagné ! Voulez-vous quitter le jeu ?");
+			System.out.println("Victoire");
+			System.exit(0);
 		}
 		if(partie.getRestriction().restrictionsAtteinte())
 		{
 			dialog.setTitle("Defaite");
 			dialog.setHeaderText("Nuul ! Vous avez perdu ! Voulez-vous quitter le jeu ?");
+			System.out.println("Defaite");
+			System.exit(0);
 		}
 
 		ButtonType oui = new ButtonType("Oui");
 		ButtonType non = new ButtonType("Non", ButtonData.CANCEL_CLOSE);
 		dialog.getButtonTypes().setAll(oui,non);
 		
-		Optional<ButtonType> answer = dialog.showAndWait();
-		if (answer.get() == oui) {
-			Platform.exit();
-		}
+		
 	}
 
 	public static void main(String[] args) {

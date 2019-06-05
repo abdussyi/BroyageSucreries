@@ -6,8 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import game.Joueur;
-import javafx.scene.control.Label;
-import terrain.Case;
+
 import terrain.Plateau;
 
 /*

@@ -1,10 +1,8 @@
 package terrain;
 
 import bonbon.BonbonOrdinaire;
-import bonbon.BonbonSpecial;
 import bonbon.Contenant;
 import bonbon.Couleur;
-import bonbon.Meringue;
 import combinaison.ChainsOfRespDetecteur;
 import game.Joueur;
 
